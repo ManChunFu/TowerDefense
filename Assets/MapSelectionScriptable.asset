@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 645bbf94b99d74b49a7ec80d684c382b, type: 3}
+  m_Name: MapSelectionScriptable
+  m_EditorClassIdentifier: 
+  SelectedMap: 1
+  _mapData:
+  - Key: 48
+    ObjectType: {fileID: 8446340793006353421, guid: 3445e6bc04d6d478291c03e5d82bb4fc,
+      type: 3}
+    Walkable: 1
+  - Key: 49
+    ObjectType: {fileID: 5807043221564994009, guid: 146d056a4463e4d4380e1679e4d2e16f,
+      type: 3}
+    Walkable: 0
+  - Key: 50
+    ObjectType: {fileID: 5719485938209910767, guid: 9058376e4a8804756acc0e60103feae4,
+      type: 3}
+    Walkable: 0
+  - Key: 51
+    ObjectType: {fileID: 5719485938209910767, guid: 16fb6a8e3e0cb30429c24d50f3920c5c,
+      type: 3}
+    Walkable: 0
+  - Key: 56
+    ObjectType: {fileID: 6189042043493516721, guid: ddaec73c1732b4af4b5f402d92b9f36f,
+      type: 3}
+    Walkable: 1
+  - Key: 57
+    ObjectType: {fileID: 6360046985728068882, guid: c6e46598445204935bcf241407b687d5,
+      type: 3}
+    Walkable: 1
+  _mapstartPoint: {x: 0, y: 0, z: 0}
+  CellSize: 2
