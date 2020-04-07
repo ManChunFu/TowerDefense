@@ -7,20 +7,20 @@ namespace Tools
 {
     public class ComponentPool<T> : IDisposable, IPool<T> where T : Component
     {
-        private bool _isDisposed;
+        private bool m_IsDisposed;
         private readonly uint _expandBy;
-        private readonly Stack<T> _objects;
-        private readonly List<T> _created;
-        private readonly T _prefab; // a component prefab
-        private readonly Transform _parent;
+        private readonly Stack<T> m_Objects;
+        private readonly List<T> m_Created;
+        private readonly T m_Prefab; // a component prefab
+        private readonly Transform m_Parent;
 
         public ComponentPool(uint initSize, T prefab, uint expandBy = 1, Transform parent = null)
         {
             _expandBy = expandBy;
-            _prefab = prefab;
-            _parent = parent;
-            _objects = new Stack<T>();
-            _created = new List<T>();
+            m_Prefab = prefab;
+            m_Parent = parent;
+            m_Objects = new Stack<T>();
+            m_Created = new List<T>();
             Expand((uint)Mathf.Max(1, initSize));
         }
 
@@ -28,32 +28,32 @@ namespace Tools
         {
             for (int i = 0; i < expandBy; i++)
             {
-                T instance = Object.Instantiate<T>(_prefab, _parent);
+                T instance = Object.Instantiate<T>(m_Prefab, m_Parent);
                 instance.gameObject.AddComponent<EmitOnDisable>().OnDisableGameObject += UnRent;
-                _objects.Push(instance);
-                _created.Add(instance);
+                m_Objects.Push(instance);
+                m_Created.Add(instance);
             }
         }
 
         public T Rent(bool returnActive)
         {
-            if (_objects.Count == 0)
+            if (m_Objects.Count == 0)
             {
                 Expand(_expandBy);
             }
-            T instance = _objects.Pop();
+            T instance = m_Objects.Pop();
             return instance;
         }
 
         private void UnRent(GameObject gameObject)
         {
-            if (_isDisposed == false)
-                _objects.Push(gameObject.GetComponent<T>());
+            if (m_IsDisposed == false)
+                m_Objects.Push(gameObject.GetComponent<T>());
         }
 
         private void Clean()
         {
-            foreach(T component in _created)
+            foreach(T component in m_Created)
             {
                 if (component != null)
                 {
@@ -61,13 +61,13 @@ namespace Tools
                     Object.Destroy(component.gameObject);
                 }
             }
-            _objects.Clear();
-            _created.Clear();
+            m_Objects.Clear();
+            m_Created.Clear();
         }
 
         public void Dispose()
         {
-            _isDisposed = true;
+            m_IsDisposed = true;
             Clean();
         }
     }

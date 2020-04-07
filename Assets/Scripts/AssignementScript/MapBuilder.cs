@@ -1,19 +1,18 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class MapBuilder : MonoBehaviour
 {
-    [SerializeField] private MapScriptable _mapScriptable = null;
+    [SerializeField] private MapScriptable m_MapScriptable = null;
 
     private void Awake()
     {
-        if (_mapScriptable == null)
+        if (m_MapScriptable == null)
             throw new MissingReferenceException("Missing reference of MapScriptable object");
     }
 
     private void Start()
     {
-        _mapScriptable.BuildMap(transform);
+        m_MapScriptable.BuildMap(transform);
     }
 }
 

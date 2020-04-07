@@ -5,28 +5,28 @@ namespace Tools
     [CreateAssetMenu(fileName = "Scriptable", menuName ="Scriptable/GameObjectScriptablePool", order = 3)]
     public class GameObjectScriptablePool : ScriptableObject, IPool<GameObject>
     {
-        [SerializeField] private GameObject _prefab = null;
-        [SerializeField] private uint _initSize = 1;
-        [SerializeField] private uint _expandBy = 1;
-        [SerializeField] private bool _hasParent = true;
-        [SerializeField] private string _parentName = "";
-        private GameObjectPool _internalPool;
+        [SerializeField] private GameObject m_Prefab = null;
+        [SerializeField] private uint m_InitSize = 1;
+        [SerializeField] private uint m_ExpandBy = 1;
+        [SerializeField] private bool m_HasParent = true;
+        [SerializeField] private string m_ParentName = "";
+        private GameObjectPool m_InternalPool;
 
         public GameObject Rent(bool returnActive)
         {
-            if (_internalPool == null)
+            if (m_InternalPool == null)
             {
                 Transform parent = null;
-                if (_hasParent)
-                    parent = new GameObject(_parentName).transform;
-                _internalPool = new GameObjectPool(_initSize, _prefab, _expandBy, parent);
+                if (m_HasParent)
+                    parent = new GameObject(m_ParentName).transform;
+                m_InternalPool = new GameObjectPool(m_InitSize, m_Prefab, m_ExpandBy, parent);
             }
-            return _internalPool.Rent(returnActive);
+            return m_InternalPool.Rent(returnActive);
         }
 
         public void OnDestroy()
         {
-            _internalPool.Dispose();
+            m_InternalPool.Dispose();
         }
     }
 }

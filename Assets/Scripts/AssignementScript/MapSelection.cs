@@ -2,21 +2,21 @@
 
 public class MapSelection : MonoBehaviour
 {
-    [SerializeField] private MapScriptable _mapScriptable = null;
+    [SerializeField] private MapScriptable m_MapScriptable = null;
 
     private void Awake()
     {
-        if (_mapScriptable == null)
+        if (m_MapScriptable == null)
             throw new MissingReferenceException("Missing reference of MapScriptable object");
     }
 
     private void Start()
     {
-        if (_mapScriptable != null)
-            _mapScriptable.SelectedMap = (MapTypes)1;
+        if (m_MapScriptable != null)
+            m_MapScriptable.SelectedMap = (MapTypes)1;
     }
     public void SelectMap(int value)
     {
-        _mapScriptable.SelectedMap = (MapTypes)value;
+        m_MapScriptable.SelectedMap = (MapTypes)value;
     }
 }

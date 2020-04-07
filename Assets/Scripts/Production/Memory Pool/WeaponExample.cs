@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class WeaponExample : MonoBehaviour
 {
-    [SerializeField] private BulletExample _bulletComponentPrefab = null;
-    [SerializeField] private GameObject _bulletPrefab = null;
-    [SerializeField] private GameObjectScriptablePool _scriptablePool = null;
+    [SerializeField] private BulletExample m_BulletComponentPrefab = null;
+    [SerializeField] private GameObject m_BulletPrefab = null;
+    [SerializeField] private GameObjectScriptablePool m_ScriptablePool = null;
 
-    private GameObjectPool _bulletPool;
+    private GameObjectPool m_BulletPool;
     private ComponentPool<BulletExample> _bulletComponentPool;
     private void Awake()
     {
-        _bulletPool = new GameObjectPool(10, _bulletPrefab, 5, new GameObject("Bullet Parent").transform);
-        _bulletComponentPool = new ComponentPool<BulletExample>(1, _bulletComponentPrefab, 1, new GameObject("Bullet Component Parent").transform);
+        m_BulletPool = new GameObjectPool(10, m_BulletPrefab, 5, new GameObject("Bullet Parent").transform);
+        _bulletComponentPool = new ComponentPool<BulletExample>(1, m_BulletComponentPrefab, 1, new GameObject("Bullet Component Parent").transform);
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bullet = _scriptablePool.Rent(true);
+            GameObject bullet = m_ScriptablePool.Rent(true);
             BulletExample bulletComponent = bullet.GetComponent<BulletExample>();
             bullet.transform.position = transform.position;
             bulletComponent.Reset();
