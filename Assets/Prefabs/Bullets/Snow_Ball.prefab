@@ -12,15 +12,15 @@ GameObject:
   - component: {fileID: 225077031991834591}
   - component: {fileID: 225077031991834590}
   - component: {fileID: 225077031991834589}
-  - component: {fileID: 4775678512444375593}
-  - component: {fileID: 3946600525760980562}
+  - component: {fileID: 7913884533941650610}
+  - component: {fileID: 6975924766173078768}
   m_Layer: 0
-  m_Name: Cannon_Ball
+  m_Name: Snow_Ball
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &225077031991834576
 Transform:
   m_ObjectHideFlags: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d963a953cb4224d60a2e05a75e7357d3, type: 2}
+  - {fileID: 2100000, guid: 2faa8697a39564a5eb0967973784eee7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,9 +93,9 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.61
+  m_Radius: 0.64
   m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &4775678512444375593
+--- !u!54 &7913884533941650610
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3946600525760980562
+--- !u!114 &6975924766173078768
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -123,6 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 248ae184dcfeae041991723922b57793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletType: 1
+  m_BulletType: 2
   m_Speed: 10
   m_Damage: 10
