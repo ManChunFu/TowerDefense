@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MapSelectionScriptable
   m_EditorClassIdentifier: 
   SelectedMap: 1
-  _mapData:
+  m_MapData:
   - Key: 48
     ObjectType: {fileID: 8446340793006353421, guid: 3445e6bc04d6d478291c03e5d82bb4fc,
       type: 3}
@@ -38,5 +38,5 @@ MonoBehaviour:
     ObjectType: {fileID: 6360046985728068882, guid: c6e46598445204935bcf241407b687d5,
       type: 3}
     Walkable: 1
-  _mapstartPoint: {x: 0, y: 0, z: 0}
+  m_MapstartPoint: {x: 0, y: 0, z: 0}
   CellSize: 2

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9849bd3f107810144afac935e2dd3964, type: 3}
   m_Name: BulletExamplePool
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 4387757261181784148, guid: 9c218d7d1ea50a443a8e18347d02667b, type: 3}
-  _initSize: 5
-  _expandBy: 5
-  _hasParent: 1
-  _parentName: Scriptable Items
+  m_Prefab: {fileID: 0}
+  m_InitSize: 1
+  m_ExpandBy: 1
+  m_HasParent: 1
+  m_ParentName: 

@@ -43,5 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 831f90a602f074f4f9bb700d4ade8ea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 3358623668188840345, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
-    type: 3}
+  m_StandardEnemyPool: {fileID: 11400000, guid: 21f4b704d012f584da0dff8c7612e833,
+    type: 2}
+  m_BigEnemeyPool: {fileID: 11400000, guid: 361b297e0c5bb104fa178eab52d080b7, type: 2}
+  m_MapScriptable: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d, type: 2}
+  m_SpawnWaveInterval: 10

@@ -419,6 +419,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 361b297e0c5bb104fa178eab52d080b7,
         type: 2}
+    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
+        type: 3}
+      propertyPath: m_StandardEnemyPool
+      value: 
+      objectReference: {fileID: 11400000, guid: 361b297e0c5bb104fa178eab52d080b7,
+        type: 2}
+    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
+        type: 3}
+      propertyPath: m_BigEnemeyPool
+      value: 
+      objectReference: {fileID: 11400000, guid: 21f4b704d012f584da0dff8c7612e833,
+        type: 2}
+    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
+        type: 3}
+      propertyPath: m_MapScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5949196689fc41d4082cd1697eb1b13d, type: 3}
 --- !u!1 &707490308
@@ -539,9 +557,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d051070c4f3211d4a928f7510d91b91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1998439614}
-  _mouseOverColor: {r: 0.7921569, g: 0.11764706, b: 0.11764706, a: 1}
-  _fontSizeMouseOver: 40
+  m_Text: {fileID: 0}
+  m_MouseOverColor: {r: 0, g: 0, b: 0, a: 0}
+  m_FontSizeMouseOver: 40
 --- !u!114 &775814233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -711,6 +729,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
         type: 2}
+    - target: {fileID: 1057797758830553977, guid: b4b387272f879b741b4ade550f06b803,
+        type: 3}
+      propertyPath: m_MapScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
+        type: 2}
     - target: {fileID: 1057797758830553978, guid: b4b387272f879b741b4ade550f06b803,
         type: 3}
       propertyPath: m_Name
@@ -764,7 +788,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 239a94737f6a791488d120bc72a22fc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseMenu: {fileID: 1186329370}
+  m_PauseMenu: {fileID: 0}
 --- !u!4 &1008471841
 Transform:
   m_ObjectHideFlags: 0
@@ -831,9 +855,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d051070c4f3211d4a928f7510d91b91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 144565301}
-  _mouseOverColor: {r: 0.7921569, g: 0.11764706, b: 0.11764706, a: 1}
-  _fontSizeMouseOver: 40
+  m_Text: {fileID: 0}
+  m_MouseOverColor: {r: 0, g: 0, b: 0, a: 0}
+  m_FontSizeMouseOver: 40
 --- !u!114 &1113993755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1037,7 +1061,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6540bbc50554d745ae827a15b192965, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pausePanel: {fileID: 1606913349}
+  m_PausePanel: {fileID: 1606913349}
 --- !u!1 &1403231746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,9 +1267,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d051070c4f3211d4a928f7510d91b91d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _text: {fileID: 1403231748}
-  _mouseOverColor: {r: 0.7921569, g: 0.11764706, b: 0.11764706, a: 1}
-  _fontSizeMouseOver: 40
+  m_Text: {fileID: 0}
+  m_MouseOverColor: {r: 0, g: 0, b: 0, a: 0}
+  m_FontSizeMouseOver: 40
 --- !u!114 &1720956941
 MonoBehaviour:
   m_ObjectHideFlags: 0

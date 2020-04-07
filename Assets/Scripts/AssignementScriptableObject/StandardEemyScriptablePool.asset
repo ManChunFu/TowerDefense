@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9849bd3f107810144afac935e2dd3964, type: 3}
   m_Name: StandardEemyScriptablePool
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 9011364068510347475, guid: ec9879919787306439e23d9e5d6ca3e1, type: 3}
-  _initSize: 10
-  _expandBy: 8
-  _hasParent: 1
-  _parentName: Stand Enemy Pool
+  m_Prefab: {fileID: 9011364068510347475, guid: ec9879919787306439e23d9e5d6ca3e1,
+    type: 3}
+  m_InitSize: 10
+  m_ExpandBy: 8
+  m_HasParent: 1
+  m_ParentName: Standard Enemy Pool

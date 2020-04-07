@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7206a0b4b14db04bbba7f05ef947905, type: 3}
   m_Name: StandardEnemyUnitScriptable
   m_EditorClassIdentifier: 
-  _enemyType: 0
-  _enemyPrefab: {fileID: 9011364068510347475, guid: ec9879919787306439e23d9e5d6ca3e1,
+  EnemyType: 0
+  EnemyPrefab: {fileID: 9011364068510347475, guid: ec9879919787306439e23d9e5d6ca3e1,
     type: 3}
-  _health: 100
-  _speed: 8
+  Health: 100
+  Speed: 10

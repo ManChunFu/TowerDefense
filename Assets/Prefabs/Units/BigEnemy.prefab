@@ -54,6 +54,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
         type: 2}
+    - target: {fileID: 3281098432270828622, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
+        type: 3}
+      propertyPath: m_MapScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
+        type: 2}
+    - target: {fileID: 3281098432270828622, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
+        type: 3}
+      propertyPath: m_EnemyTypes
+      value: 
+      objectReference: {fileID: 11400000, guid: c3a02e05fe8690f43bf31802485cb90f,
+        type: 2}
     - target: {fileID: 3358623666309429278, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
