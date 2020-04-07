@@ -357,86 +357,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyManager
       objectReference: {fileID: 0}
-    - target: {fileID: 1966446563042569616, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _mapBuilder
-      value: 
-      objectReference: {fileID: 984347623}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _moveSpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _smallEnemyPrefab
-      value: 
-      objectReference: {fileID: 9011364068510347475, guid: ec9879919787306439e23d9e5d6ca3e1,
-        type: 3}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _bigEnemyPrefab
-      value: 
-      objectReference: {fileID: 4994214547807295414, guid: 9f67fd435462bfd49b7c587b19c0a0fd,
-        type: 3}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _spawnRate
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _mapScriptable
-      value: 
-      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _bigEnemeyPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 361b297e0c5bb104fa178eab52d080b7,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _standardEnemyPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 21f4b704d012f584da0dff8c7612e833,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _mStandardEnemyPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 21f4b704d012f584da0dff8c7612e833,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: _mBigEnemeyPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 361b297e0c5bb104fa178eab52d080b7,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: m_StandardEnemyPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 361b297e0c5bb104fa178eab52d080b7,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: m_BigEnemeyPool
-      value: 
-      objectReference: {fileID: 11400000, guid: 21f4b704d012f584da0dff8c7612e833,
-        type: 2}
-    - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
-        type: 3}
-      propertyPath: m_MapScriptable
-      value: 
-      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
-        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5949196689fc41d4082cd1697eb1b13d, type: 3}
 --- !u!1 &707490308
@@ -712,53 +632,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1057797758830553977, guid: b4b387272f879b741b4ade550f06b803,
-        type: 3}
-      propertyPath: _mapType
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1057797758830553977, guid: b4b387272f879b741b4ade550f06b803,
-        type: 3}
-      propertyPath: _mapTypeSelection
-      value: 
-      objectReference: {fileID: 11400000, guid: e31644f1ff847e44eba765d0bb063df5,
-        type: 2}
-    - target: {fileID: 1057797758830553977, guid: b4b387272f879b741b4ade550f06b803,
-        type: 3}
-      propertyPath: _mapScriptable
-      value: 
-      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
-        type: 2}
-    - target: {fileID: 1057797758830553977, guid: b4b387272f879b741b4ade550f06b803,
-        type: 3}
-      propertyPath: m_MapScriptable
-      value: 
-      objectReference: {fileID: 11400000, guid: 31c543eb4daf5a04fbe7df77ded8782d,
-        type: 2}
     - target: {fileID: 1057797758830553978, guid: b4b387272f879b741b4ade550f06b803,
         type: 3}
       propertyPath: m_Name
       value: MapBuilder
       objectReference: {fileID: 0}
-    - target: {fileID: 1057797758830553978, guid: b4b387272f879b741b4ade550f06b803,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b4b387272f879b741b4ade550f06b803, type: 3}
---- !u!114 &984347623 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1057797758830553977, guid: b4b387272f879b741b4ade550f06b803,
-    type: 3}
-  m_PrefabInstance: {fileID: 984347622}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3d0b08e4917af446b9e95fae1aa0a70, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1008471839
 GameObject:
   m_ObjectHideFlags: 0
