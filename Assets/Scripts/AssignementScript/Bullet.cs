@@ -11,27 +11,42 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float m_Speed = 10.0f;
     [SerializeField] private int m_Damage = 10;
     [SerializeField] private float m_SlowDownTime = 3.0f;
-    [SerializeField] private int m_SlowDownSpeed = 2;
+    [SerializeField] private int m_SlowDownSpeed = 1;
 
-    private float m_Radius = 5.0f;
+    private Rigidbody m_Rigidbody = null;
     private Transform m_Target = default;
+    private Transform m_FirePoint = default;
+    private Health m_Health = null;
+    private bool m_TargetIsDead = false;
+    private float m_Radius = 5.0f;
 
-    private void Update()
+    private void Awake()
     {
-        transform.LookAt(m_Target);
-        transform.Translate(Vector3.up * m_Speed * Time.deltaTime);
+        m_Rigidbody = GetComponent<Rigidbody>();
     }
 
+    private void OnEnable()
+    {
+        if (m_Health != null)
+        {
+            m_Health.OnDead += TargetDie;
+        }
+    }
+    private void Start()
+    {
+        m_Health = FindObjectOfType<Health>();
+        m_Health.OnDead += TargetDie;
+    }
+    private void Update()
+    {
+        m_Rigidbody.AddForce(m_FirePoint.forward * 500 * Time.deltaTime);
+        Invoke("Sleep", 3.0f);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Enemy") && !m_TargetIsDead)
         {
-            Movement movement = other.gameObject.GetComponent<Movement>();
-            if (movement.IsDead)
-                return;
-
-            Debug.Log("Hurt!");
             if (m_BulletType == BulletType.Cannon)
             {
                 AreaDamage();
@@ -80,16 +95,32 @@ public class Bullet : MonoBehaviour
         {
             health.TakeDamage(m_Damage);
         }
+        gameObject.SetActive(false);
     }
 
-    public void SetPosition(Vector3 spawnPosition)
+    public void SetPosition(Transform spawnPosition)
     {
-        transform.position = spawnPosition;
+        transform.position = spawnPosition.position;
+        m_FirePoint = spawnPosition;
     }
     
     public void SetTarget(Transform target)
     {
         m_Target = target;
     }
-   
+
+    private void TargetDie (bool isDead)
+    {
+        m_TargetIsDead = true;
+    }
+    private void Sleep()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDisable()
+    {
+        m_Health.OnDead -= TargetDie;
+    }
+
 }

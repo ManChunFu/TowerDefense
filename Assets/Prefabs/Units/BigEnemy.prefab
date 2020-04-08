@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5079931065323938604}
   m_Layer: 9
   m_Name: Pivot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,6 +110,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 876199a9b55db6642b15604d2049ca94, type: 2}
+    - target: {fileID: 3358623667777313682, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
+        type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 3358623668188840342, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
         type: 3}
       propertyPath: m_LocalPosition.x

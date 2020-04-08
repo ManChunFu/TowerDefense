@@ -54,7 +54,10 @@ public class Movement : MonoBehaviour
         m_StartPoint += new Vector3(0, m_Pivot, 0);
         m_EndPoint += new Vector3(0, m_Pivot, 0);
 
-        List<Vector2Int> accesibles = m_MapScriptable.Map.GridCells.Where(m => m_MapScriptable.m_MapWalkableDictionary[m.ObjectType]).Select(m => new Vector2Int(m.XPos2D, m.YPos2D)).ToList();
+        List<Vector2Int> accesibles = m_MapScriptable.Map.GridCells.
+            Where(m => m_MapScriptable.m_MapWalkableDictionary[m.ObjectType]).
+            Select(m => new Vector2Int(m.XPos2D, m.YPos2D)).ToList();
+
         m_Dijkstra = new Dijkstra(accesibles);
 
         m_Path = m_Dijkstra.FindPath(m_StartPoint.ToVector2Int(m_MapScriptable.CellSize), m_EndPoint.ToVector2Int(m_MapScriptable.CellSize)).ToList();
@@ -100,7 +103,7 @@ public class Movement : MonoBehaviour
         IsDead = isDead;
         m_Animator.SetTrigger("Killed");
         m_ReachNextStep = false;
-        Invoke("BackToPool", 1f);
+        Invoke("BackToPool", 1.0f);
     }
 
     private void BackToPool()
@@ -114,7 +117,7 @@ public class Movement : MonoBehaviour
     }
     private IEnumerator SlowDown(int slowDown, float affectTime)
     {
-        m_Speed -= slowDown;
+        m_Speed = slowDown;
         yield return new WaitForSeconds(affectTime);
         m_Speed = m_EnemyTypes.Speed;
     }

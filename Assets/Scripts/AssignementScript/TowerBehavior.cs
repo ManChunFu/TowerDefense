@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using Tools;
+﻿using Tools;
 using UnityEngine;
 
 public class TowerBehavior : MonoBehaviour
@@ -9,8 +8,10 @@ public class TowerBehavior : MonoBehaviour
     [SerializeField] private TowerType m_TowerType = default;
     [SerializeField] private Transform m_SpawnPoint = default;
     [SerializeField] private Transform m_LookAtPoint = default;
+    [SerializeField] private float m_FireRate = 0.15f;
 
     private Transform m_Target = null;
+    private float m_CanFire = -1f;
 
     private void Start()
     {
@@ -33,22 +34,22 @@ public class TowerBehavior : MonoBehaviour
             throw new MissingComponentException("Missing reference of Tower_Top transform.");
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Enemy"))
+        if (Time.time > m_CanFire)
         {
-            m_Target = other.transform;
-            m_LookAtPoint.LookAt(m_Target);
-            StartCoroutine(Shoot());
+            m_CanFire = Time.time + m_FireRate;
+            if (other.CompareTag("Enemy"))
+            {
+                m_Target = other.transform;
+                m_LookAtPoint.LookAt(m_Target);
+                Shoot();
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        StopCoroutine(Shoot());
-    }
 
-    private IEnumerator Shoot()
+    private void Shoot()
     {
         GameObject cannon;
         if (m_TowerType == TowerType.CannonTower)
@@ -59,12 +60,10 @@ public class TowerBehavior : MonoBehaviour
         {
             cannon = m_SnowBallPool.Rent(false);
         }
-
         Bullet bullet = cannon.GetComponent<Bullet>();
-        bullet.SetPosition(m_SpawnPoint.position);
+        bullet.SetPosition(m_SpawnPoint);
         bullet.SetTarget(m_Target);
         bullet.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.0f);
     }
 }
 

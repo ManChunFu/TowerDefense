@@ -126,3 +126,5 @@ MonoBehaviour:
   m_BulletType: 1
   m_Speed: 10
   m_Damage: 10
+  m_SlowDownTime: 3
+  m_SlowDownSpeed: 1

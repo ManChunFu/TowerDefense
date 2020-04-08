@@ -44,7 +44,7 @@ public class EnemyManager : MonoBehaviour
         for (int i = 0; i < smallEnemyAmout; i++)
         {
             m_StandardEnemyPool.Rent(true);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(1f);
         }
 
         for (int i = 0; i < bigEnemyAmout; i++)
