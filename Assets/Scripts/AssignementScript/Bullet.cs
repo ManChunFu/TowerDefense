@@ -10,8 +10,9 @@ public class Bullet : MonoBehaviour
     [SerializeField] private BulletType m_BulletType = default;
     [SerializeField] private float m_Speed = 10.0f;
     [SerializeField] private int m_Damage = 10;
+    [SerializeField] private float m_SlowDownTime = 3.0f;
+    [SerializeField] private int m_SlowDownSpeed = 2;
 
-    private Movement m_Movement;
     private float m_Radius = 5.0f;
     private Transform m_Target = default;
 
@@ -26,8 +27,8 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            m_Movement = other.gameObject.GetComponent<Movement>();
-            if (m_Movement.m_IsDead)
+            Movement movement = other.gameObject.GetComponent<Movement>();
+            if (movement.IsDead)
                 return;
 
             Debug.Log("Hurt!");
@@ -66,7 +67,19 @@ public class Bullet : MonoBehaviour
 
     private void FreezeDamage()
     {
-        // freez the enemy
+        // freeze , slow down target
+
+        Movement movement = m_Target.GetComponent<Movement>();
+        if (movement != null)
+        {
+            movement.SlowDownImpact(m_SlowDownSpeed, m_SlowDownTime);
+        }
+
+        Health health = m_Target.GetComponent<Health>();
+        if (health != null)
+        {
+            health.TakeDamage(m_Damage);
+        }
     }
 
     public void SetPosition(Vector3 spawnPosition)

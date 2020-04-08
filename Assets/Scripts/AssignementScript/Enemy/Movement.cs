@@ -14,11 +14,13 @@ public class Movement : MonoBehaviour
     private Dijkstra m_Dijkstra = null;
     private List<Vector2Int> m_Path;
     private bool m_ReachNextStep = false;
+    private Renderer m_Renderer = null;
+    private Health m_Health = null;
+    private Animator m_Animator = null;
+    private float m_Pivot = 0;
+    private int m_Speed = 0;
+    public bool IsDead = false;
 
-    private Health m_Health;
-    private Animator m_Animator;
-    private float m_Pivot;
-    public bool m_IsDead = false;
 
     private void Awake()
     {
@@ -27,6 +29,11 @@ public class Movement : MonoBehaviour
 
         if (m_EnemyTypes == null)
             throw new MissingReferenceException("Missing reference of EnemyTypes Scriptable Object.");
+
+        if (m_EnemyTypes != null)
+            m_Speed = m_EnemyTypes.Speed;
+
+        m_Renderer = GetComponent<Renderer>();
 
         m_Health = GetComponent<Health>();
 
@@ -53,7 +60,7 @@ public class Movement : MonoBehaviour
         m_Path = m_Dijkstra.FindPath(m_StartPoint.ToVector2Int(m_MapScriptable.CellSize), m_EndPoint.ToVector2Int(m_MapScriptable.CellSize)).ToList();
         transform.position = m_StartPoint;
 
-        m_IsDead = false;
+        IsDead = false;
     }
 
     private void Update()
@@ -70,7 +77,7 @@ public class Movement : MonoBehaviour
             {
                 transform.LookAt(m_Path.Last().ToVector3(m_Pivot,m_MapScriptable.CellSize));
                 m_Animator.SetBool("isWalking", true);
-                transform.position = Vector3.MoveTowards(transform.position, m_Path.Last().ToVector3(m_Pivot, m_MapScriptable.CellSize), m_EnemyTypes.Speed * Time.deltaTime);
+                transform.position = Vector3.MoveTowards(transform.position, m_Path.Last().ToVector3(m_Pivot, m_MapScriptable.CellSize), m_Speed * Time.deltaTime);
             }
         }
 
@@ -89,7 +96,7 @@ public class Movement : MonoBehaviour
 
     private void Die(bool isDead)
     {
-        m_IsDead = isDead;
+        IsDead = isDead;
         m_Animator.SetTrigger("Killed");
         m_ReachNextStep = false;
         Invoke("BackToPool", 1f);
@@ -98,5 +105,16 @@ public class Movement : MonoBehaviour
     private void BackToPool()
     {
         gameObject.SetActive(false);
+    }
+
+    public void SlowDownImpact(int slowDown, float affectTime)
+    {
+        StartCoroutine(SlowDown(slowDown, affectTime));
+    }
+    private IEnumerator SlowDown(int slowDown, float affectTime)
+    {
+        m_Speed -= slowDown;
+        yield return new WaitForSeconds(affectTime);
+        m_Speed = m_EnemyTypes.Speed;
     }
 }

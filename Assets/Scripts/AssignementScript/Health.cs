@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField] private int m_HealthPoints;
-    [SerializeField] private EnemyTypesScriptable m_enemyTypesScriptable;
+    [SerializeField] private int m_HealthPoints = 100;
+    [SerializeField] private EnemyTypesScriptable m_enemyTypesScriptable = default;
 
     public event Action<int> OnHealthChanged;
     public int HealthPoints
@@ -19,7 +19,6 @@ public class Health : MonoBehaviour
             }
         }
     }
-
     
     public event Action<bool> OnDead;
 
