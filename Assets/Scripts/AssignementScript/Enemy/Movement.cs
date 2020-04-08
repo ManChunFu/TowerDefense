@@ -60,6 +60,7 @@ public class Movement : MonoBehaviour
         m_Path = m_Dijkstra.FindPath(m_StartPoint.ToVector2Int(m_MapScriptable.CellSize), m_EndPoint.ToVector2Int(m_MapScriptable.CellSize)).ToList();
         transform.position = m_StartPoint;
 
+        m_Speed = m_EnemyTypes.Speed;
         IsDead = false;
     }
 
