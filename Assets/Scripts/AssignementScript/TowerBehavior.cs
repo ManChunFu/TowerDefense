@@ -50,17 +50,22 @@ public class TowerBehavior : MonoBehaviour
 
     private IEnumerator Shoot()
     {
+        GameObject cannon;
         if (m_TowerType == TowerType.CannonTower)
         {
-            GameObject cannon = m_CannonPool.Rent(false);
-            Bullet bullet = cannon.GetComponent<Bullet>();
-            bullet.SetPosition(m_SpawnPoint.position);
-            bullet.SetTarget(m_Target);
-            bullet.gameObject.SetActive(true);
-            yield return new WaitForSeconds(3.0f);
+            cannon = m_CannonPool.Rent(false);
         }
-    }
+        else
+        {
+            cannon = m_SnowBallPool.Rent(false);
+        }
 
+        Bullet bullet = cannon.GetComponent<Bullet>();
+        bullet.SetPosition(m_SpawnPoint.position);
+        bullet.SetTarget(m_Target);
+        bullet.gameObject.SetActive(true);
+        yield return new WaitForSeconds(3.0f);
+    }
 }
 
 
