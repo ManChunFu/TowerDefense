@@ -1,4 +1,5 @@
 ﻿using AI;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Tools;
@@ -14,8 +15,10 @@ public class Movement : MonoBehaviour
     private List<Vector2Int> m_Path;
     private bool m_ReachNextStep = false;
 
+    private Health m_Health;
     private Animator m_Animator;
     private float m_Pivot;
+    public bool m_IsDead = false;
 
     private void Awake()
     {
@@ -25,12 +28,16 @@ public class Movement : MonoBehaviour
         if (m_EnemyTypes == null)
             throw new MissingReferenceException("Missing reference of EnemyTypes Scriptable Object.");
 
+        m_Health = GetComponent<Health>();
+
         m_Animator = GetComponent<Animator>();
 
         m_Pivot = Mathf.Abs(transform.GetChild(1).transform.position.y) ;
     }
     private void OnEnable()
     {
+        m_Health.OnDead += Die;
+
         if (m_MapScriptable != null)
         {
             m_StartPoint = m_MapScriptable.StartPoint;
@@ -44,7 +51,9 @@ public class Movement : MonoBehaviour
         m_Dijkstra = new Dijkstra(accesibles);
 
         m_Path = m_Dijkstra.FindPath(m_StartPoint.ToVector2Int(m_MapScriptable.CellSize), m_EndPoint.ToVector2Int(m_MapScriptable.CellSize)).ToList();
-        transform.position = m_StartPoint; 
+        transform.position = m_StartPoint;
+
+        m_IsDead = false;
     }
 
     private void Update()
@@ -67,10 +76,27 @@ public class Movement : MonoBehaviour
 
         if (transform.position == m_EndPoint)
         {
-            transform.position = m_StartPoint;
             m_Animator.SetBool("isWalking", false);
             m_ReachNextStep = false;
             gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        m_Health.OnDead -= Die;
+    }
+
+    private void Die(bool isDead)
+    {
+        m_IsDead = isDead;
+        m_Animator.SetTrigger("Killed");
+        m_ReachNextStep = false;
+        Invoke("BackToPool", 1f);
+    }
+
+    private void BackToPool()
+    {
+        gameObject.SetActive(false);
     }
 }

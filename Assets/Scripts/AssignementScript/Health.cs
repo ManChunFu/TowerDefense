@@ -4,9 +4,7 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int m_HealthPoints;
-
-    private bool m_IsDead = false;
-    private Animator m_Animator = null;
+    [SerializeField] private EnemyTypesScriptable m_enemyTypesScriptable;
 
     public event Action<int> OnHealthChanged;
     public int HealthPoints
@@ -22,32 +20,39 @@ public class Health : MonoBehaviour
         }
     }
 
-    private void Awake()
-    {
-        m_Animator = GetComponent<Animator>();
-    }
+    
+    public event Action<bool> OnDead;
 
+    private bool m_IsDead = false;
+    public bool IsDead
+    {
+        get => m_IsDead;
+        set
+        {
+            m_IsDead = value;
+            if (value)
+            {                
+                OnDead?.Invoke(true);
+            }
+        }
+    }
+    private void OnEnable()
+    {
+        m_HealthPoints = m_enemyTypesScriptable.Health;
+        IsDead = false;
+    }
     public void TakeDamage(int damage)
     {
-        m_HealthPoints = Mathf.Max(m_HealthPoints - damage, 0);
-        if (m_HealthPoints == 0)
+        HealthPoints = Mathf.Max(HealthPoints - damage, 0);
+        if (HealthPoints == 0)
             Die();
     }
 
     private void Die()
     {
-        if (m_IsDead)
+        if (IsDead)
             return;
 
-        m_IsDead = true;
-        if (m_Animator != null)
-        {
-            m_Animator.SetTrigger("Killed");
-        }
+        IsDead = true;
     }
-
-    public bool IsDead()
-    {
-        return m_IsDead;
-    }    
 }

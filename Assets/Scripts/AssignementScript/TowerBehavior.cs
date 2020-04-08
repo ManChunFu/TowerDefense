@@ -8,9 +8,8 @@ public class TowerBehavior : MonoBehaviour
     [SerializeField] private GameObjectScriptablePool m_SnowBallPool = null;
     [SerializeField] private TowerType m_TowerType = default;
     [SerializeField] private Transform m_SpawnPoint = default;
-    [SerializeField] private float m_ShootRange = 10.0f;
+    [SerializeField] private Transform m_LookAtPoint = default;
 
-    private IWeapon m_Weapon;
     private Transform m_Target = null;
 
     private void Start()
@@ -25,27 +24,21 @@ public class TowerBehavior : MonoBehaviour
             throw new MissingReferenceException("Missing reference of SnowScriptableObjectPool.");
         }
 
-        if (m_TowerType == TowerType.CannonTower)
-        {
-            m_Weapon = new CannonTower();
-        }
-        else
-        {
-            m_Weapon = new SnowTower();
-        }
-
         if (m_SpawnPoint == null)
         {
             throw new MissingReferenceException("Missing reference of Cannon_Spawn_Point transform.");
         }
-    }
 
+        if (m_LookAtPoint == null)
+            throw new MissingComponentException("Missing reference of Tower_Top transform.");
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy"))
         {
             m_Target = other.transform;
+            m_LookAtPoint.LookAt(m_Target);
             StartCoroutine(Shoot());
         }
     }

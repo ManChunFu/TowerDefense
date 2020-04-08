@@ -55,6 +55,12 @@ PrefabInstance:
       propertyPath: m_HealthPoints
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: -5229779127867458624, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
+        type: 3}
+      propertyPath: m_enemyTypesScriptable
+      value: 
+      objectReference: {fileID: 11400000, guid: 396420f99c8ce5e4bb1594cdb3f23b16,
+        type: 2}
     - target: {fileID: 3281098432270828622, guid: 116fda0e5defb46aba819fdb1f4ec0bf,
         type: 3}
       propertyPath: _moveSpeed

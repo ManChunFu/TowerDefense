@@ -8,7 +8,9 @@ public class PauseMenu : MonoBehaviour
     private void Start()
     {
         if (m_PausePanel == null)
+        {
             throw new MissingReferenceException("Missing refrence of Pause panel");
+        }
     }
 
     public void Pause()

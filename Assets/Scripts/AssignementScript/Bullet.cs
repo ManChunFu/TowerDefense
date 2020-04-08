@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum BulletType
 {
@@ -12,6 +11,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float m_Speed = 10.0f;
     [SerializeField] private int m_Damage = 10;
 
+    private Movement m_Movement;
     private float m_Radius = 5.0f;
     private Transform m_Target = default;
 
@@ -26,6 +26,10 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
+            m_Movement = other.gameObject.GetComponent<Movement>();
+            if (m_Movement.m_IsDead)
+                return;
+
             Debug.Log("Hurt!");
             if (m_BulletType == BulletType.Cannon)
             {
@@ -62,7 +66,7 @@ public class Bullet : MonoBehaviour
 
     private void FreezeDamage()
     {
-        throw new NotImplementedException();
+        // freez the enemy
     }
 
     public void SetPosition(Vector3 spawnPosition)

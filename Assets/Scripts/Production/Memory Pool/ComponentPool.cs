@@ -48,7 +48,9 @@ namespace Tools
         private void UnRent(GameObject gameObject)
         {
             if (m_IsDisposed == false)
+            {
                 m_Objects.Push(gameObject.GetComponent<T>());
+            }
         }
 
         private void Clean()
