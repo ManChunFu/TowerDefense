@@ -301,7 +301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_CannonPool: {fileID: 11400000, guid: b536fdaec14f64243b43588bffc4099d, type: 2}
   m_SnowBallPool: {fileID: 11400000, guid: ffd78f92ca6f42c49aa6b76586529fac, type: 2}
-  m_TowerType: 1
+  m_TowerType: 0
   m_SpawnPoint: {fileID: 242510282953726403}
   m_LookAtPoint: {fileID: 4511434059114826827}
   m_FireRate: 0.25

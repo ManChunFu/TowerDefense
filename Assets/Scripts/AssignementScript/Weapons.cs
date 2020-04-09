@@ -1,5 +1,6 @@
 ﻿public enum TowerType
 {
-    SnowTower,
-    CannonTower
+    CannonTower,
+    SnowBallTower
 }
+

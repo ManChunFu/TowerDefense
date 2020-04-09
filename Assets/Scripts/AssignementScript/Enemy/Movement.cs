@@ -14,13 +14,11 @@ public class Movement : MonoBehaviour
     private Dijkstra m_Dijkstra = null;
     private List<Vector2Int> m_Path;
     private bool m_ReachNextStep = false;
-    private Renderer m_Renderer = null;
     private Health m_Health = null;
     private Animator m_Animator = null;
     private float m_Pivot = 0;
     private int m_Speed = 0;
     public bool IsDead = false;
-
 
     private void Awake()
     {
@@ -33,8 +31,6 @@ public class Movement : MonoBehaviour
         if (m_EnemyTypes != null)
             m_Speed = m_EnemyTypes.Speed;
 
-        m_Renderer = GetComponent<Renderer>();
-
         m_Health = GetComponent<Health>();
 
         m_Animator = GetComponent<Animator>();
@@ -44,6 +40,7 @@ public class Movement : MonoBehaviour
     private void OnEnable()
     {
         m_Health.OnDead += Die;
+        m_Health.OnHealthChanged += Damage;
 
         if (m_MapScriptable != null)
         {
@@ -96,6 +93,7 @@ public class Movement : MonoBehaviour
     private void OnDisable()
     {
         m_Health.OnDead -= Die;
+        m_Health.OnHealthChanged -= Damage;
     }
 
     private void Die(bool isDead)
@@ -113,12 +111,20 @@ public class Movement : MonoBehaviour
 
     public void SlowDownImpact(int slowDown, float affectTime)
     {
-        StartCoroutine(SlowDown(slowDown, affectTime));
+        if (!IsDead)
+        {
+            StartCoroutine(SlowMotion(slowDown, affectTime));
+        }
     }
-    private IEnumerator SlowDown(int slowDown, float affectTime)
+    private IEnumerator SlowMotion(int slowDown, float affectTime)
     {
         m_Speed = slowDown;
         yield return new WaitForSeconds(affectTime);
         m_Speed = m_EnemyTypes.Speed;
+    }
+
+    private void Damage(int healthPoint)
+    {
+        m_Animator.SetTrigger("Damaged");
     }
 }

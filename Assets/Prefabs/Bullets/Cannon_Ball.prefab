@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 225077031991834590}
   - component: {fileID: 225077031991834589}
   - component: {fileID: 4775678512444375593}
-  - component: {fileID: 3946600525760980562}
+  - component: {fileID: 3587821186918654360}
   m_Layer: 11
   m_Name: Cannon_Ball
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3946600525760980562
+--- !u!114 &3587821186918654360
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -19,9 +19,8 @@ public class Health : MonoBehaviour
             }
         }
     }
-    
+     
     public event Action<bool> OnDead;
-
     private bool m_IsDead = false;
     public bool IsDead
     {
