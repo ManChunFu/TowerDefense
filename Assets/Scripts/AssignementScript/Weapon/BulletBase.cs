@@ -1,15 +1,13 @@
 ﻿using System.Collections;
 using UnityEngine;
-public abstract class BulletBase : MonoBehaviour 
+public abstract class BulletBase : MonoBehaviour
 {
-
     [SerializeField] private float m_FireForce = 300.0f;
 
     private Rigidbody m_Rigidbody = null;
     private Transform m_FirePoint = default;
     private Health m_Health = null;
     private bool m_TargetIsDead = false;
-    private Transform m_Target = default;
     private bool m_IsActive = false;
 
     private void Awake()
@@ -39,7 +37,7 @@ public abstract class BulletBase : MonoBehaviour
 
     public IEnumerator BulletMoves()
     {
-        m_Rigidbody.AddForce(m_FirePoint.forward * 300);
+        m_Rigidbody.AddForce(m_FirePoint.forward * m_FireForce);
         yield return new WaitForSeconds(2.0f);
         if (m_IsActive)
         {
@@ -68,12 +66,11 @@ public abstract class BulletBase : MonoBehaviour
     private void OnDisable()
     {
         m_IsActive = false;
+        m_Rigidbody.velocity = Vector3.zero;
         m_Health.OnDead -= TargetDie;
         StopAllCoroutines();
     }
 
     public virtual void SetTarget(Transform target)
-    {
-        m_Target = target;
-    }
+    {}
 }

@@ -13,6 +13,7 @@ public class SnowBall : BulletBase
         base.OnTriggerEnter(other);
 
         FreezeDamage();
+        gameObject.SetActive(false);
     }
     private void FreezeDamage()
     {
@@ -27,13 +28,10 @@ public class SnowBall : BulletBase
         {
             health.TakeDamage(m_Damage);
         }
-        gameObject.SetActive(false);
     }
 
     public override void SetTarget(Transform target)
     {
         m_Target = target;
     }
-
-
 }

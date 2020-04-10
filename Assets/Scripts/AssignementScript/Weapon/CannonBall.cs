@@ -10,6 +10,7 @@ public class CannonBall : BulletBase
         base.OnTriggerEnter(other);
 
         AreaDamage();
+        gameObject.SetActive(false);
     }
 
     private void AreaDamage()
@@ -26,7 +27,4 @@ public class CannonBall : BulletBase
             }
         }
     }
-
-
-
 }

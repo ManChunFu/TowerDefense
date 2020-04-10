@@ -9,7 +9,7 @@ public enum BulletType
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private BulletType m_BulletType = default;
-    [SerializeField] private float m_Speed = 10.0f;
+    //[SerializeField] private float m_Speed = 10.0f;
     [SerializeField] private int m_Damage = 10;
     [SerializeField] private float m_SlowDownTime = 3.0f;
     [SerializeField] private int m_SlowDownSpeed = 1;
