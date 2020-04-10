@@ -20,14 +20,14 @@ public class MapScriptable : ScriptableObject
     public int CellSize = 2;
 
     private Dictionary<char, GameObject> m_MapTileDictionary = new Dictionary<char, GameObject>();
-    public Dictionary<char, bool> m_MapWalkableDictionary = new Dictionary<char, bool>();
+    public  Dictionary<char, bool> m_MapWalkableDictionary = new Dictionary<char, bool>();
 
     private Vector3 m_StartPoint = default;
     private Vector3 m_EndPoint = default;
     public Vector3 StartPoint => m_StartPoint;
     public Vector3 EndPoint => m_EndPoint;
 
-    public Map Map;
+    public Maps Maps;
 
     public void BuildMap(Transform transform)
     {
@@ -38,9 +38,9 @@ public class MapScriptable : ScriptableObject
         }
 
         MapReader mapReader = new MapReader();
-        Map = mapReader.ReadMap(SelectedMap);
+        Maps = mapReader.ReadMap(SelectedMap);
 
-        foreach (MapCell item in Map.GridCells)
+        foreach (MapCell item in Maps.GridCells)
         {
             float z = item.YPos2D * CellSize;
             float x = item.XPos2D * CellSize;

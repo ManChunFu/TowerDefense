@@ -39,8 +39,6 @@ public class Movement : MonoBehaviour
     }
     private void OnEnable()
     {
-        m_Animator.SetBool("IsIdle", true);
-
         m_Health.OnDead += Die;
         m_Health.OnHealthChanged += Damage;
 
@@ -53,7 +51,7 @@ public class Movement : MonoBehaviour
         m_StartPoint += new Vector3(0, m_Pivot, 0);
         m_EndPoint += new Vector3(0, m_Pivot, 0);
 
-        List<Vector2Int> accesibles = m_MapScriptable.Map.GridCells.
+        List<Vector2Int> accesibles = m_MapScriptable.Maps.GridCells.
             Where(m => m_MapScriptable.m_MapWalkableDictionary[m.ObjectType]).
             Select(m => new Vector2Int(m.XPos2D, m.YPos2D)).ToList();
 
@@ -108,6 +106,7 @@ public class Movement : MonoBehaviour
 
     private void BackToPool()
     {
+        m_Animator.Rebind();
         gameObject.SetActive(false);
     }
 
@@ -120,6 +119,11 @@ public class Movement : MonoBehaviour
     }
     private IEnumerator SlowMotion(int slowDown, float affectTime)
     {
+        if (IsDead)
+        {
+            yield break; 
+        }
+
         m_Speed = slowDown;
         yield return new WaitForSeconds(affectTime);
         m_Speed = m_EnemyTypes.Speed;
@@ -127,6 +131,10 @@ public class Movement : MonoBehaviour
 
     private void Damage(int healthPoint)
     {
+        if (IsDead)
+        {
+            return;
+        }
         m_Animator.SetTrigger("Damaged");
     }
 }

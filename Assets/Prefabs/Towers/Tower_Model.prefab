@@ -261,8 +261,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1430611518195826670}
-  - component: {fileID: -1816681552916020991}
   - component: {fileID: 4006475029811219503}
+  - component: {fileID: -1816681552916020991}
   - component: {fileID: 1298050706581440793}
   m_Layer: 10
   m_Name: Tower_Model
@@ -287,23 +287,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1816681552916020991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5719485938209910767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5902e5d92cf6889428a0cd271d3507f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BulletTypePool: {fileID: 11400000, guid: b536fdaec14f64243b43588bffc4099d, type: 2}
-  m_TowerType: 0
-  m_SpawnPoint: {fileID: 242510282953726403}
-  m_LookAtPoint: {fileID: 4511434059114826827}
-  m_FireRate: 0.25
 --- !u!135 &4006475029811219503
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -317,6 +300,22 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1816681552916020991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5719485938209910767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5902e5d92cf6889428a0cd271d3507f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_BulletTypePool: {fileID: 11400000, guid: b536fdaec14f64243b43588bffc4099d, type: 2}
+  m_SpawnPoint: {fileID: 242510282953726403}
+  m_LookAtPoint: {fileID: 4511434059114826827}
+  m_FireRate: 0.5
 --- !u!54 &1298050706581440793
 Rigidbody:
   m_ObjectHideFlags: 0

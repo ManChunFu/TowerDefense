@@ -5,7 +5,7 @@ using TowerDefense;
 
 public class MapReader
 {
-    public Map ReadMap(MapTypes mapType)
+    public Maps ReadMap(MapTypes mapType)
     {
         string filePath = ProjectPaths.RESOURCES_MAP_SETTINGS + Enum.GetName(typeof(MapTypes), mapType) + ".txt";
 
@@ -44,6 +44,6 @@ public class MapReader
                 resultMap.Add(new MapCell(rowIndex, columnIndex, item));
             }
         }
-        return new Map { GridCells = resultMap, SpawnWaves = spawnWaves };
+        return new Maps { GridCells = resultMap, SpawnWaves = spawnWaves };
     }
 }
