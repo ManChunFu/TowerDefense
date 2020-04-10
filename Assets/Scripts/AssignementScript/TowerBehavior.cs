@@ -10,7 +10,7 @@ public class TowerBehavior : MonoBehaviour
     [SerializeField] private Transform m_LookAtPoint = default;
     [SerializeField] private float m_FireRate = 0.25f;
 
-    private Transform m_Target = null;
+    private Transform m_TransformTarget = null;
     private float m_CanFire = -1f;
 
     private void Start()
@@ -33,23 +33,22 @@ public class TowerBehavior : MonoBehaviour
         if (m_LookAtPoint == null)
             throw new MissingComponentException("Missing reference of Tower_Top transform.");
     }
-    private Vector3 compare = default;
-    private float y = 2f;
+    
     private void OnTriggerStay(Collider other)
     {
         if (Time.time > m_CanFire)
         {
             m_CanFire = Time.time + m_FireRate;
-            m_Target = (other.transform.parent.position == compare)? other.transform : other.transform.parent;
-            //m_LookAtPoint.LookAt(new Vector3(m_Target.position.x, 1, m_Target.position.z));
-            m_LookAtPoint.LookAt(m_Target);
+            //Vector3.zero is the pool position
+            m_TransformTarget = (other.transform.parent.position == Vector3.zero)? other.transform : other.transform.parent;
+            m_LookAtPoint.LookAt(m_TransformTarget);
             Shoot();
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        m_Target = null;
+        m_TransformTarget = null;
     }
 
 
@@ -64,9 +63,9 @@ public class TowerBehavior : MonoBehaviour
         {
             cannon = m_SnowBallPool.Rent(false);
         }
-        Bullet bullet = cannon.GetComponent<Bullet>();
+        BulletBase bullet = cannon.GetComponent<BulletBase>();
         bullet.SetPosition(m_SpawnPoint);
-        bullet.SetTarget(m_Target);
+        bullet.SetTarget(m_TransformTarget);
         bullet.gameObject.SetActive(true);
         bullet.Shoot();
     }

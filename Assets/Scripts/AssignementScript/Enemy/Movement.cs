@@ -39,6 +39,8 @@ public class Movement : MonoBehaviour
     }
     private void OnEnable()
     {
+        m_Animator.SetBool("IsIdle", true);
+
         m_Health.OnDead += Die;
         m_Health.OnHealthChanged += Damage;
 

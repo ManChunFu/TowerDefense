@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 225077031991834590}
   - component: {fileID: 225077031991834589}
   - component: {fileID: 4775678512444375593}
-  - component: {fileID: 3587821186918654360}
+  - component: {fileID: 6396097792797674465}
   m_Layer: 11
   m_Name: Cannon_Ball
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3587821186918654360
+--- !u!114 &6396097792797674465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,11 +120,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 225077031991834588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248ae184dcfeae041991723922b57793, type: 3}
+  m_Script: {fileID: 11500000, guid: cb27dc972fb2bf54ab6519dcd253c0ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletType: 1
-  m_Speed: 10
+  m_FireForce: 300
+  m_DamageRadius: 5
   m_Damage: 10
-  m_SlowDownTime: 3
-  m_SlowDownSpeed: 1

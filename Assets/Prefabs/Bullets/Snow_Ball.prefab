@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 225077031991834590}
   - component: {fileID: 225077031991834589}
   - component: {fileID: 7913884533941650610}
-  - component: {fileID: 6975924766173078768}
+  - component: {fileID: 5418170994666484223}
   m_Layer: 11
   m_Name: Snow_Ball
   m_TagString: Untagged
@@ -111,7 +111,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6975924766173078768
+--- !u!114 &5418170994666484223
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,11 +120,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 225077031991834588}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248ae184dcfeae041991723922b57793, type: 3}
+  m_Script: {fileID: 11500000, guid: d2b25874892ee0d40978493542b27ca0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BulletType: 2
-  m_Speed: 10
+  m_FireForce: 300
   m_Damage: 20
   m_SlowDownTime: 3
   m_SlowDownSpeed: 1
