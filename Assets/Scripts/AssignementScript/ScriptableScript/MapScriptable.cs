@@ -27,7 +27,7 @@ public class MapScriptable : ScriptableObject
     public Vector3 StartPoint => m_StartPoint;
     public Vector3 EndPoint => m_EndPoint;
 
-    public Maps Maps;
+    public Maps Maps { get; private set; }
 
     public void BuildMap(Transform transform)
     {

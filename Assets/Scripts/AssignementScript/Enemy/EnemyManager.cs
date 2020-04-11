@@ -14,6 +14,7 @@ public class EnemyManager : MonoBehaviour
 
     private int m_SpawnWaveCount = 1;
     private bool m_SpawnCompleted = true;
+
     private void Awake()
     {
         if (m_MapScriptable == null)
@@ -42,7 +43,7 @@ public class EnemyManager : MonoBehaviour
         if (m_MapScriptable.Maps.SpawnWaves.Any(w => w.SpawnWaveIndex == m_SpawnWaveCount))
         {
             StartCoroutine(Spawn
-                (m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == m_SpawnWaveCount).SmallEnemyAmout,
+                (m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == m_SpawnWaveCount).StandardEnemyAmout,
                 m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == m_SpawnWaveCount).BigEnemeyAmout));
             m_SpawnWaveCount++;
             m_SpawnCompleted = false;

@@ -14,7 +14,9 @@ public class MouseOver : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     private void Awake()
     {
         if (m_Text == null)
-            Debug.Log ("Missing reference of Text game object.");
+        {
+            throw new MissingReferenceException("Missing reference of Text game object.");
+        }
         m_StartColor = m_Text.color;
         m_StartFontSize = m_Text.fontSize;
     }

@@ -7,13 +7,17 @@ public class MapSelection : MonoBehaviour
     private void Awake()
     {
         if (m_MapScriptable == null)
+        {
             throw new MissingReferenceException("Missing reference of MapScriptable object");
+        }
     }
 
     private void Start()
     {
         if (m_MapScriptable != null)
+        {
             m_MapScriptable.SelectedMap = (MapTypes)1;
+        }
     }
     public void SelectMap(int value)
     {

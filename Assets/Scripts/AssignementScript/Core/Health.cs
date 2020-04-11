@@ -48,7 +48,9 @@ public class Health : MonoBehaviour
 
         HealthPoints = Mathf.Max(HealthPoints - damage, 0);
         if (HealthPoints == 0)
+        {
             Die();
+        }
     }
 
     private void Die()

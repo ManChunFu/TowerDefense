@@ -3,12 +3,14 @@ using Tools;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthListner : MonoBehaviour//, IObserver<int>
+public class PlayerHealthListner : MonoBehaviour
 {
-    [SerializeField] private Text m_TextField;
+    [SerializeField] private Text m_TextField = null;
+    [SerializeField] private Text m_TextField1 = null;
 
     private Player m_Player;
     private IDisposable m_Subscription;
+    private IDisposable m_NameSubscription;
 
     private void Awake() //Construct myself 1 / 2
     {
@@ -19,7 +21,6 @@ public class PlayerHealthListner : MonoBehaviour//, IObserver<int>
     {
         if (m_Player != null) // Is this the first OnEnable call?
         {
-            //m_Player.OnPlayerHealthChanged += UpdateTextField;
             m_Subscription = m_Player.Health.Subscribe(UpdateTextField);
         }
     }
@@ -28,23 +29,30 @@ public class PlayerHealthListner : MonoBehaviour//, IObserver<int>
     {
         m_Player = FindObjectOfType<Player>();
         m_Subscription = m_Player.Health.Subscribe(UpdateTextField);
+        m_NameSubscription = m_Player.Name.Subscribe(UpdateAnotherTexField);
     }
 
     private void OnDisable()
     {
-        // m_Player.OnPlayerHealthChanged -= UpdateTextField;
-        m_Subscription.Dispose();
+        m_Subscription?.Dispose();
+        m_NameSubscription?.Dispose();
     }
 
     private void UpdateTextField(int playerHealth)
     {
-        m_TextField.text = playerHealth.ToString();
+        if (playerHealth < 0)
+        {
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            m_TextField.text = playerHealth.ToString();
+        }
     }
 
-    public void OnCompleted() { }
-    public void OnError(Exception error) { }
-    public void OnNext(int value)
+    private void UpdateAnotherTexField(string value)
     {
-        UpdateTextField(value);
+        m_TextField1.text = value;
     }
+
 }

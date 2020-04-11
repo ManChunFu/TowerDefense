@@ -7,7 +7,9 @@ public class MapBuilder : MonoBehaviour
     private void Awake()
     {
         if (m_MapScriptable == null)
+        {
             throw new MissingReferenceException("Missing reference of MapScriptable object");
+        }
     }
 
     private void Start()

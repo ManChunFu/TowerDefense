@@ -23,13 +23,19 @@ public class Movement : MonoBehaviour
     private void Awake()
     {
         if (m_MapScriptable == null)
+        {
             throw new MissingReferenceException("Missing reference of MapScriptable object.");
+        }
 
         if (m_EnemyTypes == null)
+        {
             throw new MissingReferenceException("Missing reference of EnemyTypes Scriptable Object.");
+        }
 
         if (m_EnemyTypes != null)
+        {
             m_Speed = m_EnemyTypes.Speed;
+        }
 
         m_Health = GetComponent<Health>();
 
@@ -39,6 +45,8 @@ public class Movement : MonoBehaviour
     }
     private void OnEnable()
     {
+        IsDead = false;
+
         m_Health.OnDead += Die;
         m_Health.OnHealthChanged += Damage;
 
@@ -57,11 +65,12 @@ public class Movement : MonoBehaviour
 
         m_Dijkstra = new Dijkstra(accesibles);
 
-        m_Path = m_Dijkstra.FindPath(m_StartPoint.ToVector2Int(m_MapScriptable.CellSize), m_EndPoint.ToVector2Int(m_MapScriptable.CellSize)).ToList();
+        m_Path = m_Dijkstra.FindPath(m_StartPoint.ToVector2Int(m_MapScriptable.CellSize), 
+            m_EndPoint.ToVector2Int(m_MapScriptable.CellSize)).ToList();
+
         transform.position = m_StartPoint;
 
         m_Speed = m_EnemyTypes.Speed;
-        IsDead = false;
     }
 
     private void Update()

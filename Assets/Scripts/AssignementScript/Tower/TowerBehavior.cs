@@ -29,6 +29,7 @@ public class TowerBehavior : MonoBehaviour
     
     // The collider gets into trigger can be child part of main object. Check the parent to get the main object's transform.
     // If collider gets into trigger is already main object, the parent is the pool which has Vector3.zero position.
+    // The Tower layer only react with enemy layer
     private void OnTriggerStay(Collider other)
     {
         if (Time.time > m_CanFire)
