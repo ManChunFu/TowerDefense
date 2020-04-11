@@ -8,7 +8,7 @@ public class SnowBall : BulletBase
 
     private Transform m_Target = default;
 
-    public override void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
 

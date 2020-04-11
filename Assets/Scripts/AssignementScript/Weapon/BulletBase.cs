@@ -10,7 +10,7 @@ public abstract class BulletBase : MonoBehaviour
     private bool m_TargetIsDead = false;
     private bool m_IsActive = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
     }
@@ -45,7 +45,7 @@ public abstract class BulletBase : MonoBehaviour
         }
     }
 
-    public virtual void OnTriggerEnter(Collider other)
+    protected virtual void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Enemy") && !m_TargetIsDead)
         {}

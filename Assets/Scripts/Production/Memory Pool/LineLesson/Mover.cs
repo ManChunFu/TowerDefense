@@ -7,7 +7,7 @@ public class Mover : MonoBehaviour, IObserver<int>
     private void Start()
     {
         m_Player = FindObjectOfType<Player>();
-        m_Player.Health.Subscribe(this, notifyOnSubscribe:false);
+        m_Player.Health.Skip(1).Subscribe(this);
     }
     public void OnCompleted()
     {

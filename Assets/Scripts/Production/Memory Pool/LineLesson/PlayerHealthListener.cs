@@ -9,8 +9,8 @@ public class PlayerHealthListner : MonoBehaviour
     [SerializeField] private Text m_TextField1 = null;
 
     private Player m_Player;
-    private IDisposable m_Subscription;
-    private IDisposable m_NameSubscription;
+
+    private CompositeDisposable m_Disposables = new CompositeDisposable();
 
     private void Awake() //Construct myself 1 / 2
     {
@@ -21,33 +21,38 @@ public class PlayerHealthListner : MonoBehaviour
     {
         if (m_Player != null) // Is this the first OnEnable call?
         {
-            m_Subscription = m_Player.Health.Subscribe(UpdateTextField);
+            RenewSubscription();
         }
     }
 
     private void Start() //Construct myself 2 / 2
     {
         m_Player = FindObjectOfType<Player>();
-        m_Subscription = m_Player.Health.Subscribe(UpdateTextField);
-        m_NameSubscription = m_Player.Name.Subscribe(UpdateAnotherTexField);
+        RenewSubscription();
+        // this one doesn't unsubscribe
+        m_Player.Health.Where(health => health > 0).Subscribe(_ => gameObject.SetActive(true));
+    }
+
+    private void RenewSubscription()
+    {
+        m_Player.Health.Subscribe(UpdateTextField).AddTo(m_Disposables);
+        m_Player.Health.Where(playerHealth => playerHealth <= 0).Subscribe(Deactivate).AddTo(m_Disposables);
+        m_Player.Name.Subscribe(UpdateAnotherTexField).AddTo(m_Disposables);
     }
 
     private void OnDisable()
     {
-        m_Subscription?.Dispose();
-        m_NameSubscription?.Dispose();
+        m_Disposables.Dispose();
+    }
+
+    private void Deactivate(int value)
+    {
+        gameObject.SetActive(false);
     }
 
     private void UpdateTextField(int playerHealth)
     {
-        if (playerHealth < 0)
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            m_TextField.text = playerHealth.ToString();
-        }
+        m_TextField.text = playerHealth.ToString();
     }
 
     private void UpdateAnotherTexField(string value)

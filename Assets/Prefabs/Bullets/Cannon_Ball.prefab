@@ -124,5 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FireForce: 300
+  m_ExposionScriptablePool: {fileID: 11400000, guid: 5bf2a7307190e874e8b9be3a87251e00,
+    type: 2}
   m_DamageRadius: 5
   m_Damage: 10

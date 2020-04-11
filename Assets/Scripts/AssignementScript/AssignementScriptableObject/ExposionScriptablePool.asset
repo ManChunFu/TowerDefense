@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7206a0b4b14db04bbba7f05ef947905, type: 3}
-  m_Name: StandardEnemyUnitScriptable
+  m_Script: {fileID: 11500000, guid: 9849bd3f107810144afac935e2dd3964, type: 3}
+  m_Name: ExposionScriptablePool
   m_EditorClassIdentifier: 
-  EnemyType: 0
-  EnemyPrefab: {fileID: 9011364068510347475, guid: ec9879919787306439e23d9e5d6ca3e1,
+  m_Prefab: {fileID: 4017425172858650090, guid: e14bcfb7d88c10b4ab96c7355232d0c2,
     type: 3}
-  Health: 200
-  Speed: 10
+  m_InitSize: 5
+  m_ExpandBy: 3
+  m_HasParent: 1
+  m_ParentName: ExposionScriptablePool

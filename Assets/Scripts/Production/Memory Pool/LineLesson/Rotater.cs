@@ -22,11 +22,10 @@ public class Rotater : MonoBehaviour
     }
     private void SubscribeToPlayerHealth()
     {
-        m_Subscription = m_Player.Health.Subscribe(intValue =>
+        m_Subscription = m_Player.Health.Skip(1).Subscribe(intValue =>
         {
             transform.rotation = Random.rotation;
-        },
-        notifyOnSubscribe: false);
+        });
     }
 
     private void OnDisable()
