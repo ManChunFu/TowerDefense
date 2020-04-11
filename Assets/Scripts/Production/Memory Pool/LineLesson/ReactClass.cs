@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tools;
+using UnityEngine;
 
 public static class ObservableExtensions
 {
@@ -60,6 +61,7 @@ public class ActionToObserver<T> : IObserver<T>
     }
 }
 
+//[Serializable]
 public class ObservableProperty<T> : IObservable<T>
 {
     private bool m_HasValue = false;

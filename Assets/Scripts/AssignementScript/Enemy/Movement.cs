@@ -18,7 +18,7 @@ public class Movement : MonoBehaviour
     private Animator m_Animator = null;
     private float m_Pivot = 0;
     private int m_Speed = 0;
-    public bool IsDead = false;
+    public bool IsDead { get; private set; }
 
     private void Awake()
     {
