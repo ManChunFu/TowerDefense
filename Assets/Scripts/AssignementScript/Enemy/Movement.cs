@@ -11,6 +11,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField] private MapScriptable m_MapScriptable = null;
     [SerializeField] private EnemyTypesScriptable m_EnemyTypes = null;
+    [SerializeField] private GameDataListener m_GameDataListener = null;
     [SerializeField] private int m_Damage = 1; 
 
     private HealthObserverable m_HealthObserverable;
@@ -24,7 +25,6 @@ public class Movement : MonoBehaviour
     private float m_Pivot = 0;
     private int m_Speed = 0;
     private bool m_isDead = false;
-   
 
     private void Awake()
     {
@@ -47,7 +47,7 @@ public class Movement : MonoBehaviour
 
         m_Animator = GetComponent<Animator>();
 
-        m_Pivot = Mathf.Abs(transform.GetChild(1).transform.position.y) ;
+        m_Pivot = Mathf.Abs(transform.GetChild(1).transform.position.y);
     }
     private void OnEnable()
     {
@@ -56,6 +56,11 @@ public class Movement : MonoBehaviour
         {
             m_HealthObserverable.Health.Subscribe(Damage).AddTo(m_Disposables);
             m_HealthObserverable.Health.Where(health => health <= 0).Subscribe(Die).AddTo(m_Disposables);
+        }
+
+        if (m_GameDataListener == null)
+        {
+            m_GameDataListener = FindObjectOfType<GameDataListener>();
         }
 
         if (m_MapScriptable != null)
@@ -84,11 +89,12 @@ public class Movement : MonoBehaviour
     private void Start()
     {
         m_PlayerTower = FindObjectOfType<PlayerTower>();
+        m_GameDataListener = FindObjectOfType<GameDataListener>();
     }
 
     private void Update()
     {
-        if (m_Path?.Any()??false)
+        if (m_Path?.Any() ?? false)
         {
             if (transform.position == m_Path.Last().ToVector3(m_Pivot,m_MapScriptable.CellSize))
             {
@@ -123,17 +129,34 @@ public class Movement : MonoBehaviour
 
     private void Die(int value)
     {
-        m_isDead = true;
-        m_Animator.SetTrigger("Killed");
-        m_ReachNextStep = false;
-        Invoke("BackToPool", 1.0f);
+        if (!m_isDead)
+        {
+            m_isDead = true;
+            m_Animator.SetTrigger("Killed");
+            m_ReachNextStep = false;
+            Invoke("BackToPool", 1.0f);
+        }       
     }
 
     private void BackToPool()
     {
+        if (m_GameDataListener != null)
+        {
+            if (m_EnemyTypes.EnemyType == UnitType.Standard)
+            {
+                m_GameDataListener.UpdateStandardEnemyKills(1);
+            }
+            else
+            {
+                m_GameDataListener.UpdateBigEnemyKills(1);
+            }
+        }
+
         m_Animator.Rebind();
         gameObject.SetActive(false);
     }
+
+    
 
     public void SlowDownImpact(int slowDown, float affectTime)
     {

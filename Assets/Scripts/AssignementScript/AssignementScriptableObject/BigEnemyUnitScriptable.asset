@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7206a0b4b14db04bbba7f05ef947905, type: 3}
   m_Name: BigEnemyUnitScriptable
   m_EditorClassIdentifier: 
-  EnemyType: 0
+  EnemyType: 1
   EnemyPrefab: {fileID: 4994214547807295414, guid: 9f67fd435462bfd49b7c587b19c0a0fd,
     type: 3}
   Health: 400

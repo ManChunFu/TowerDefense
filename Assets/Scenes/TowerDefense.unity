@@ -324,7 +324,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -74.80006, y: -23.630028}
+  m_AnchoredPosition: {x: -79.1, y: -23.630028}
   m_SizeDelta: {x: 45, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &193500718
@@ -443,7 +443,7 @@ PrefabInstance:
     - target: {fileID: 1966446563042569617, guid: 5949196689fc41d4082cd1697eb1b13d,
         type: 3}
       propertyPath: m_QuequeTimeOfStandardEnemy
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5949196689fc41d4082cd1697eb1b13d, type: 3}
@@ -481,8 +481,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -121.899994, y: -22.930056}
-  m_SizeDelta: {x: 42.049988, y: 39.78}
+  m_AnchoredPosition: {x: -127.23, y: -22.930056}
+  m_SizeDelta: {x: 47.83, y: 39.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &422473161
 MonoBehaviour:
@@ -504,7 +504,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7c3ed959eebd2ab4aaba2e941fb7dc27, type: 3}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
@@ -1291,7 +1291,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -168.40009, y: -23.630028}
+  m_AnchoredPosition: {x: -178.1, y: -23.630028}
   m_SizeDelta: {x: 45, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1213058244
@@ -1342,7 +1342,7 @@ GameObject:
   - component: {fileID: 1289231241}
   - component: {fileID: 1289231240}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: EnemyKillsPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1639,7 +1639,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -214.40001, y: -22.630032}
+  m_AnchoredPosition: {x: -221.1, y: -22.630032}
   m_SizeDelta: {x: 91.72, y: 45.26001}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1616436916
@@ -2051,8 +2051,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -26.59999, y: -22.930056}
-  m_SizeDelta: {x: 42.049988, y: 39.78}
+  m_AnchoredPosition: {x: -29.04, y: -22.930056}
+  m_SizeDelta: {x: 46.92, y: 39.78}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1999569035
 MonoBehaviour:
@@ -2074,11 +2074,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 7c3ed959eebd2ab4aaba2e941fb7dc27, type: 3}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 50
+    m_MaxSize: 220
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -2184,5 +2184,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_PlayerHealth: {fileID: 1112118342}
-  m_StandardEnemyKills: {fileID: 0}
-  m_BigEnemyKills: {fileID: 0}
+  m_StandardEnemyKills: {fileID: 422473161}
+  m_BigEnemyKills: {fileID: 1999569035}

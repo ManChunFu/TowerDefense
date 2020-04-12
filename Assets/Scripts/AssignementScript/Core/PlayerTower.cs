@@ -23,14 +23,16 @@ public class PlayerTower : MonoBehaviour
             m_HealthObserverable.Health.Subscribe(HealthChange).AddTo(m_Disposables);
             m_HealthObserverable.Health.Where(playerHealth => playerHealth <= 0).Subscribe(Die).AddTo(m_Disposables);
         }
-    }
 
-    private void Start()
-    {
         if (m_GameDataListener == null)
         {
             m_GameDataListener = FindObjectOfType<GameDataListener>();
         }
+    }
+
+    private void Start()
+    {
+        m_GameDataListener = FindObjectOfType<GameDataListener>();
 
         if (m_GameDataListener != null)
         {
