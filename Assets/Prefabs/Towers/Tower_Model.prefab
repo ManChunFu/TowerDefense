@@ -331,7 +331,7 @@ MonoBehaviour:
   m_BulletTypePool: {fileID: 11400000, guid: b536fdaec14f64243b43588bffc4099d, type: 2}
   m_SpawnPoint: {fileID: 242510282953726403}
   m_LookAtPoint: {fileID: 4511434059114826827}
-  m_FireRate: 0.25
+  m_FireRate: 0.8
 --- !u!1 &7391422965515881056
 GameObject:
   m_ObjectHideFlags: 0

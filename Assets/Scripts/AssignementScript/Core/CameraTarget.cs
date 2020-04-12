@@ -3,9 +3,9 @@
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField] private MapScriptable m_MapScriptable = null;
-    [SerializeField] private Vector3 m_Map1View;
-    [SerializeField] private Vector3 m_Map2View;
-    [SerializeField] private Vector3 m_Map3View;
+    [SerializeField] private Vector3 m_Map1View = default;
+    [SerializeField] private Vector3 m_Map2View = default;
+    [SerializeField] private Vector3 m_Map3View = default;
 
     private void Awake()
     {

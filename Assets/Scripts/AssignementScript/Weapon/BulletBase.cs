@@ -24,7 +24,7 @@ public abstract class BulletBase : MonoBehaviour
         StartCoroutine(BulletMoves());
     }
 
-    public IEnumerator BulletMoves()
+    private  IEnumerator BulletMoves()
     {
         m_Rigidbody.AddForce(m_FirePoint.forward * m_FireForce);
         yield return new WaitForSeconds(2.0f);

@@ -62,18 +62,20 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
-    public void LoadMenu()
-    {
-        KillAllPools();
-        SceneManager.LoadScene(0);
-    }
+    #region Need to ask Ederic about it
+    //public void LoadMenu()
+    //{
+    //    KillAllPools()
+    //    SceneManager.LoadScene(0);
+    //}
 
-    private void KillAllPools()
-    {
-        FindObjectOfType<EnemyManager>()?.KillPool();
-        FindObjectOfType<CannonBall>()?.KillPool();
-        FindObjectOfType<TowerBase>()?.KillPool();
-    }
+    //private void KillAllPools()
+    //{
+    //    FindObjectOfType<EnemyManager>()?.KillPool();
+    //    FindObjectOfType<CannonBall>()?.KillPool();
+    //    FindObjectOfType<TowerBase>()?.KillPool();
+    //}
+    #endregion
 
     public void QuitGame()
     {

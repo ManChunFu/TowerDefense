@@ -16,6 +16,7 @@ public class CannonBall : BulletBase
         }
     }
 
+
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
@@ -23,6 +24,7 @@ public class CannonBall : BulletBase
         AreaDamage(other.transform.position);
         gameObject.SetActive(false);
     }
+
 
     private void AreaDamage(Vector3 position)
     {
