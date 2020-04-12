@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerTower : MonoBehaviour
 {
     [SerializeField] private GameDataListener m_GameDataListener = null;
+    [SerializeField] private GameManager m_GameManager = null;
+
     public bool IsDead { get; private set; }
 
     private HealthObserverable m_HealthObserverable = null;
@@ -17,7 +19,18 @@ public class PlayerTower : MonoBehaviour
 
     private void OnEnable()
     {
+        Setup();
+    }
+
+    private void Start()
+    {
+        Setup();
+    }
+
+    private void Setup()
+    {
         IsDead = false;
+
         if (m_HealthObserverable != null)
         {
             m_HealthObserverable.Health.Subscribe(HealthChange).AddTo(m_Disposables);
@@ -28,15 +41,15 @@ public class PlayerTower : MonoBehaviour
         {
             m_GameDataListener = FindObjectOfType<GameDataListener>();
         }
-    }
-
-    private void Start()
-    {
-        m_GameDataListener = FindObjectOfType<GameDataListener>();
 
         if (m_GameDataListener != null)
         {
             m_GameDataListener.UpdatePlayerHealth(m_HealthObserverable.Health.Value);
+        }
+
+        if (m_GameManager == null)
+        {
+            m_GameManager = FindObjectOfType<GameManager>();
         }
     }
 
@@ -69,7 +82,11 @@ public class PlayerTower : MonoBehaviour
     private void Die(int value)
     {
         IsDead = true;
-        // calll gamemanager
+        
+        if (m_GameManager != null)
+        {
+            m_GameManager.GameOver();
+        }
 
         gameObject.SetActive(false);
     }

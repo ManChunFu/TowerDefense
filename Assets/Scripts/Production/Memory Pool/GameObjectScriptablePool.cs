@@ -24,9 +24,12 @@ namespace Tools
             return m_InternalPool.Rent(returnActive);
         }
 
-        public void OnDestroy()
+        public void DestroyMe()
         {
-            m_InternalPool.Dispose();
+            if (m_InternalPool != null)
+            {
+                m_InternalPool.Dispose();
+            }
         }
     }
 }

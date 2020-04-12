@@ -3,6 +3,9 @@
 public class CameraTarget : MonoBehaviour
 {
     [SerializeField] private MapScriptable m_MapScriptable = null;
+    [SerializeField] private Vector3 m_Map1View;
+    [SerializeField] private Vector3 m_Map2View;
+    [SerializeField] private Vector3 m_Map3View;
 
     private void Awake()
     {
@@ -14,11 +17,22 @@ public class CameraTarget : MonoBehaviour
 
     private void Start()
     {
-        transform.position = new Vector3(0, 6, 0);
+        GetTargetView();
     }
 
-    private void GetTarget()
+    private void GetTargetView()
     {
-
+        if (m_MapScriptable.SelectedMap == MapTypes.map_1)
+        {
+            transform.position = m_Map1View;
+        }
+        else if (m_MapScriptable.SelectedMap == MapTypes.map_2)
+        {
+            transform.position = m_Map2View;
+        }
+        else
+        {
+            transform.position = m_Map3View;
+        }
     }
 }

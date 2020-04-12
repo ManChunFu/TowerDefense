@@ -1,30 +1,86 @@
-﻿using System;
+﻿using Tools;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private PauseMenu m_PauseMenu = null;
+    [SerializeField] private GameObject m_PausePanel = null;
+    [SerializeField] private GameObject m_GameOverPanel = null;
+
+    private void Awake()
+    {
+        if (m_PausePanel == null)
+        {
+            throw new MissingReferenceException("Missing refrence of Pause panel on Canvas");
+        }
+
+        if (m_GameOverPanel == null)
+        {
+            throw new MissingReferenceException("Missing refrence of GameOver panel on Canvas");
+        }
+    }
 
     private void Start()
     {
-        if (m_PauseMenu != null)
+        if (m_PausePanel != null)
         {
-            return;
+            m_PausePanel.SetActive(false);
         }
 
-        m_PauseMenu = FindObjectOfType<Canvas>()?.GetComponent<PauseMenu>();
-
-        if (m_PauseMenu == null)
+        if (m_GameOverPanel != null)
         {
-            
-            throw new NullReferenceException ("Null refrence of PauseMenu script.");
+            m_GameOverPanel.SetActive(false);
         }
+
+        
+        Time.timeScale = 1;
     }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            m_PauseMenu.Pause();
+            m_PausePanel.SetActive(true);
+            Pause();
         }
+    }
+
+    public void GameOver()
+    {
+        m_GameOverPanel.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void Pause()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void Resume()
+    {
+        m_PausePanel.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void LoadMenu()
+    {
+        KillAllPools();
+        SceneManager.LoadScene(0);
+    }
+
+    private void KillAllPools()
+    {
+        FindObjectOfType<EnemyManager>()?.KillPool();
+        FindObjectOfType<CannonBall>()?.KillPool();
+        FindObjectOfType<TowerBase>()?.KillPool();
+    }
+
+    public void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+      Application.Quit();
+#endif
     }
 }

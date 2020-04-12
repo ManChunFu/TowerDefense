@@ -1,7 +1,7 @@
 ﻿using Tools;
 using UnityEngine;
 
-public class TowerBehavior : MonoBehaviour
+public abstract class TowerBase : MonoBehaviour
 {
     [SerializeField] private GameObjectScriptablePool m_BulletTypePool = null;
     [SerializeField] private Transform m_SpawnPoint = default;
@@ -26,7 +26,7 @@ public class TowerBehavior : MonoBehaviour
         if (m_LookAtPoint == null)
             throw new MissingComponentException("Missing reference of Tower_Top transform.");
     }
-    
+
     // The collider gets into trigger can be child part of main object. Check the parent to get the main object's transform.
     // If collider gets into trigger is already main object, the parent is the pool which has Vector3.zero position.
     // The Tower layer only react with enemy layer
@@ -35,7 +35,7 @@ public class TowerBehavior : MonoBehaviour
         if (Time.time > m_CanFire)
         {
             m_CanFire = Time.time + m_FireRate;
-            m_TransformTarget = (other.transform.parent.position == Vector3.zero)? other.transform : other.transform.parent;
+            m_TransformTarget = (other.transform.parent.position == Vector3.zero) ? other.transform : other.transform.parent;
             m_LookAtPoint.LookAt(m_TransformTarget);
             Shoot();
         }
@@ -48,11 +48,25 @@ public class TowerBehavior : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject bulletType = m_BulletTypePool.Rent(false);
-        BulletBase bullet = bulletType.GetComponent<BulletBase>();
-        bullet.SetPosition(m_SpawnPoint);
-        bullet.gameObject.SetActive(true);
-        bullet.Shoot();
+        if (m_BulletTypePool != null)
+        {
+            GameObject bulletType = m_BulletTypePool.Rent(false);
+            if (bulletType != null)
+            {
+                BulletBase bullet = bulletType.GetComponent<BulletBase>();
+                bullet.SetPosition(m_SpawnPoint);
+                bullet.gameObject.SetActive(true);
+                bullet.Shoot();
+            }
+        }
+    }
+
+    public void KillPool()
+    {
+        if (m_BulletTypePool != null)
+        {
+            m_BulletTypePool.DestroyMe();
+        }
     }
 }
 

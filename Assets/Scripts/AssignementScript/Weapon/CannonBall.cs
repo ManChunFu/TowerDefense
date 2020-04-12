@@ -26,9 +26,15 @@ public class CannonBall : BulletBase
 
     private void AreaDamage(Vector3 position)
     {
-        GameObject exposion = m_ExposionScriptablePool.Rent(false);
-        exposion.transform.position = position;
-        exposion.SetActive(true);
+        if (m_ExposionScriptablePool != null)
+        {
+            GameObject exposion = m_ExposionScriptablePool.Rent(false);
+            if (exposion != null)
+            {
+                exposion.transform.position = position;
+                exposion.SetActive(true);
+            }
+        }
 
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_DamageRadius);
         foreach (Collider nearbyObject in colliders)
@@ -38,6 +44,14 @@ public class CannonBall : BulletBase
             {
                 healthObserverable.TakeDamage(m_Damage);
             }
+        }
+    }
+
+    public void KillPool()
+    {
+        if (m_ExposionScriptablePool != null)
+        {
+            m_ExposionScriptablePool.DestroyMe();
         }
     }
 }

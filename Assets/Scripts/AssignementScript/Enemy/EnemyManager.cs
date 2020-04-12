@@ -77,22 +77,38 @@ public class EnemyManager : MonoBehaviour
 
     private IEnumerator Spawn(int smallEnemyAmout, int bigEnemyAmout)
     {
-        for (int i = 0; i < smallEnemyAmout; i++)
+        if (m_StandardEnemyPool != null && m_BigEnemeyPool != null)
         {
-            m_StandardEnemyPool.Rent(true);
-            yield return new WaitForSeconds(m_QuequeTimeOfStandardEnemy);
+            for (int i = 0; i < smallEnemyAmout; i++)
+            {
+                m_StandardEnemyPool.Rent(true);
+                yield return new WaitForSeconds(m_QuequeTimeOfStandardEnemy);
+            }
+
+            for (int i = 0; i < bigEnemyAmout; i++)
+            {
+                m_BigEnemeyPool.Rent(true);
+                yield return new WaitForSeconds(m_QuequeTimeofBigEnemy);
+            }
+
+            yield return new WaitForSeconds(m_IntervalBetweenEachWaves);
+
+            m_SpawnWaveCounter++;
+            m_SpawnCompleted = true;
+        }
+    }
+
+    public void KillPool()
+    {
+        if (m_StandardEnemyPool != null) 
+        {
+            m_StandardEnemyPool.DestroyMe();
         }
 
-        for (int i = 0; i < bigEnemyAmout; i++)
+        if (m_BigEnemeyPool != null)
         {
-            m_BigEnemeyPool.Rent(true);
-            yield return new WaitForSeconds(m_QuequeTimeofBigEnemy);
+            m_BigEnemeyPool.DestroyMe();
         }
-
-        yield return new WaitForSeconds(m_IntervalBetweenEachWaves);
-        
-        m_SpawnWaveCounter++;
-        m_SpawnCompleted = true;
     }
 }
 

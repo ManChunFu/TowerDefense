@@ -62,9 +62,14 @@ namespace Tools
         public GameObject Rent(bool returnActive)
         {
             if (m_IsDisposed)
+            {
                 return null;
+            }
 
             GameObject instance = m_Objects.Any() ? m_Objects.Pop() : CreateNew();
+
+            if (instance == null)
+                return null;
 
             instance.SetActive(returnActive);
             return instance;
