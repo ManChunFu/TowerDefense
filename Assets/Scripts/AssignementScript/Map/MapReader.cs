@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TowerDefense;
 
 public class MapReader
@@ -34,6 +35,7 @@ public class MapReader
             } while (!sr.EndOfStream);
         }
 
+
         for (int lineIndex = lines.Count - 1, columnIndex = 0; lineIndex >= 0; lineIndex--, columnIndex++)
         {
             string line = lines[lineIndex];
@@ -44,6 +46,6 @@ public class MapReader
                 resultMap.Add(new MapCell(rowIndex, columnIndex, item));
             }
         }
-        return new Maps { GridCells = resultMap, SpawnWaves = spawnWaves };
+        return new Maps { GridCells = resultMap, SpawnWaves = spawnWaves, RowCounts = lines.Count, ColumnCounts = lines.FirstOrDefault()?.Length ?? 0 };
     }
 }

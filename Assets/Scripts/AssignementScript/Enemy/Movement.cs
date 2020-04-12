@@ -106,7 +106,7 @@ public class Movement : MonoBehaviour
 
         if (transform.position == m_EndPoint)
         {
-            if (!m_PlayerTower.IsDead)
+            if (m_PlayerTower != null)
             {
                 m_PlayerTower.TakeDamage(m_Damage);
             }
