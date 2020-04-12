@@ -51,7 +51,6 @@ public class TowerBehavior : MonoBehaviour
         GameObject bulletType = m_BulletTypePool.Rent(false);
         BulletBase bullet = bulletType.GetComponent<BulletBase>();
         bullet.SetPosition(m_SpawnPoint);
-        bullet.SetTarget(m_TransformTarget);
         bullet.gameObject.SetActive(true);
         bullet.Shoot();
     }

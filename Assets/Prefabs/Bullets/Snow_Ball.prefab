@@ -124,6 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FireForce: 300
-  m_Damage: 20
+  m_Damage: 10
   m_SlowDownTime: 3
   m_SlowDownSpeed: 1

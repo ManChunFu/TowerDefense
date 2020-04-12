@@ -16,7 +16,6 @@ public class CannonBall : BulletBase
         }
     }
 
-
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
@@ -34,10 +33,10 @@ public class CannonBall : BulletBase
         Collider[] colliders = Physics.OverlapSphere(transform.position, m_DamageRadius);
         foreach (Collider nearbyObject in colliders)
         {
-            Health health = nearbyObject.gameObject.GetComponent<Health>();
-            if (health != null)
+            HealthObserverable healthObserverable  = nearbyObject.gameObject.GetComponent<HealthObserverable>();
+            if (healthObserverable != null)
             {
-                health.TakeDamage(m_Damage);
+                healthObserverable.TakeDamage(m_Damage);
             }
         }
     }

@@ -6,32 +6,25 @@ public class SnowBall : BulletBase
     [SerializeField] private float m_SlowDownTime = 3.0f;
     [SerializeField] private int m_SlowDownSpeed = 1;
 
-    private Transform m_Target = default;
-
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
 
-        FreezeDamage();
+        FreezeDamage(other.transform);
         gameObject.SetActive(false);
     }
-    private void FreezeDamage()
+    private void FreezeDamage(Transform target)
     {
-        Movement movement = m_Target.GetComponent<Movement>();
+        Movement movement = target.GetComponent<Movement>();
         if (movement != null)
         {
             movement.SlowDownImpact(m_SlowDownSpeed, m_SlowDownTime);
         }
 
-        Health health = m_Target.GetComponent<Health>();
-        if (health != null)
+        HealthObserverable  healthObserverable = target.GetComponent<HealthObserverable>();
+        if (healthObserverable != null)
         {
-            health.TakeDamage(m_Damage);
+            healthObserverable.TakeDamage(m_Damage);
         }
-    }
-
-    public override void SetTarget(Transform target)
-    {
-        m_Target = target;
     }
 }

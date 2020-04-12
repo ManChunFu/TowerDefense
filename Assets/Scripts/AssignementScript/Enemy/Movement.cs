@@ -1,24 +1,30 @@
 ﻿using AI;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Tools;
 using UnityEngine;
 
+[RequireComponent(typeof(HealthObserverable))]
 public class Movement : MonoBehaviour
 {
-    [SerializeField] MapScriptable m_MapScriptable = null;
-    [SerializeField] EnemyTypesScriptable m_EnemyTypes = null;
+    [SerializeField] private MapScriptable m_MapScriptable = null;
+    [SerializeField] private EnemyTypesScriptable m_EnemyTypes = null;
+    [SerializeField] private int m_Damage = 1; 
 
+    private HealthObserverable m_HealthObserverable;
+    private CompositeDisposable m_Disposables = new CompositeDisposable();
+    private Animator m_Animator = null;
     private Vector3 m_StartPoint, m_EndPoint = default;
     private Dijkstra m_Dijkstra = null;
     private List<Vector2Int> m_Path;
+    private PlayerTower m_PlayerTower = null;
     private bool m_ReachNextStep = false;
-    private Health m_Health = null;
-    private Animator m_Animator = null;
     private float m_Pivot = 0;
     private int m_Speed = 0;
-    public bool IsDead { get; private set; }
+    private bool m_isDead = false;
+   
 
     private void Awake()
     {
@@ -37,7 +43,7 @@ public class Movement : MonoBehaviour
             m_Speed = m_EnemyTypes.Speed;
         }
 
-        m_Health = GetComponent<Health>();
+        m_HealthObserverable = GetComponent<HealthObserverable>();
 
         m_Animator = GetComponent<Animator>();
 
@@ -45,10 +51,12 @@ public class Movement : MonoBehaviour
     }
     private void OnEnable()
     {
-        IsDead = false;
-
-        m_Health.OnDead += Die;
-        m_Health.OnHealthChanged += Damage;
+        m_isDead = false;
+        if (m_HealthObserverable != null)
+        {
+            m_HealthObserverable.Health.Subscribe(Damage).AddTo(m_Disposables);
+            m_HealthObserverable.Health.Where(health => health <= 0).Subscribe(Die).AddTo(m_Disposables);
+        }
 
         if (m_MapScriptable != null)
         {
@@ -73,9 +81,14 @@ public class Movement : MonoBehaviour
         m_Speed = m_EnemyTypes.Speed;
     }
 
+    private void Start()
+    {
+        m_PlayerTower = FindObjectOfType<PlayerTower>();
+    }
+
     private void Update()
     {
-        if (m_Path.Any())
+        if (m_Path?.Any()??false)
         {
             if (transform.position == m_Path.Last().ToVector3(m_Pivot,m_MapScriptable.CellSize))
             {
@@ -93,6 +106,10 @@ public class Movement : MonoBehaviour
 
         if (transform.position == m_EndPoint)
         {
+            if (!m_PlayerTower.IsDead)
+            {
+                m_PlayerTower.TakeDamage(m_Damage);
+            }
             m_Animator.SetBool("isWalking", false);
             m_ReachNextStep = false;
             gameObject.SetActive(false);
@@ -101,13 +118,12 @@ public class Movement : MonoBehaviour
 
     private void OnDisable()
     {
-        m_Health.OnDead -= Die;
-        m_Health.OnHealthChanged -= Damage;
+        m_Disposables?.Dispose();
     }
 
-    private void Die(bool isDead)
+    private void Die(int value)
     {
-        IsDead = isDead;
+        m_isDead = true;
         m_Animator.SetTrigger("Killed");
         m_ReachNextStep = false;
         Invoke("BackToPool", 1.0f);
@@ -121,14 +137,14 @@ public class Movement : MonoBehaviour
 
     public void SlowDownImpact(int slowDown, float affectTime)
     {
-        if (!IsDead)
+        if (!m_isDead)
         {
             StartCoroutine(SlowMotion(slowDown, affectTime));
         }
     }
     private IEnumerator SlowMotion(int slowDown, float affectTime)
     {
-        if (IsDead)
+        if (m_isDead)
         {
             yield break; 
         }
@@ -140,7 +156,7 @@ public class Movement : MonoBehaviour
 
     private void Damage(int healthPoint)
     {
-        if (IsDead)
+        if (m_isDead)
         {
             return;
         }

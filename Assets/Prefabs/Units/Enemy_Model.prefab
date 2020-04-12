@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 3358623668188840342}
   - component: {fileID: 3358623668188840343}
   - component: {fileID: 3281098432270828622}
-  - component: {fileID: -5229779127867458624}
+  - component: {fileID: 924046033569668066}
   m_Layer: 9
   m_Name: Enemy_Model
   m_TagString: Enemy
@@ -681,8 +681,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MapScriptable: {fileID: 0}
   m_EnemyTypes: {fileID: 0}
-  IsDead: 0
---- !u!114 &-5229779127867458624
+--- !u!114 &924046033569668066
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -691,11 +690,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3358623668188840345}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02dc7ba4d0e20a948ac74f8b834ed7a1, type: 3}
+  m_Script: {fileID: 11500000, guid: 990c08040189bd745bf0babb0811edd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HealthPoints: 0
-  m_enemyTypesScriptable: {fileID: 0}
+  m_Health: 0
+  m_IsDead: 0
 --- !u!1 &3358623668240928174
 GameObject:
   m_ObjectHideFlags: 0

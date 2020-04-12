@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class HealthObersverable : MonoBehaviour
+public class HealthObserverable : MonoBehaviour
 {
     [SerializeField] private int m_Health = default;
     [SerializeField] private bool m_IsDead;
@@ -13,7 +13,7 @@ public class HealthObersverable : MonoBehaviour
         Health.Value = m_InitialHealth = m_Health;
     }
 
-    private void OnEnable()
+    private void OnDisable()
     {
         Health.Value = m_Health = m_InitialHealth;
         m_IsDead = false;
