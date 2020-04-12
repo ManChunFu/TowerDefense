@@ -4,7 +4,6 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] private int m_HealthPoints = 100;
-    [SerializeField] private EnemyTypesScriptable m_enemyTypesScriptable = default;
 
     public event Action<int> OnHealthChanged;
     public int HealthPoints
@@ -36,7 +35,6 @@ public class Health : MonoBehaviour
     }
     private void OnEnable()
     {
-        m_HealthPoints = m_enemyTypesScriptable.Health;
         IsDead = false;
     }
     public void TakeDamage(int damage)

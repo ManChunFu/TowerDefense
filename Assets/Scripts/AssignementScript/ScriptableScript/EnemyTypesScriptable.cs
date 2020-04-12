@@ -5,6 +5,5 @@ public class EnemyTypesScriptable : ScriptableObject
 {
     public UnitType EnemyType;
     public GameObject EnemyPrefab;
-    public int Health;
     public int Speed;
 }
