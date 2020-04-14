@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_PausePanel = null;
     [SerializeField] private GameObject m_GameOverPanel = null;
+    [SerializeField] private GameObject m_WinPanel = null;
+
 
     private void Awake()
     {
@@ -18,6 +20,12 @@ public class GameManager : MonoBehaviour
         {
             throw new MissingReferenceException("Missing refrence of GameOver panel on Canvas");
         }
+
+        if (m_WinPanel == null)
+        {
+            throw new MissingReferenceException("Missing refrence of Win panel on Canvas");
+        }
+
     }
 
     private void Start()
@@ -32,6 +40,10 @@ public class GameManager : MonoBehaviour
             m_GameOverPanel.SetActive(false);
         }
 
+        if (m_WinPanel != null)
+        {
+            m_WinPanel.SetActive(false);
+        }
         
         Time.timeScale = 1;
     }
@@ -43,6 +55,12 @@ public class GameManager : MonoBehaviour
             m_PausePanel.SetActive(true);
             Pause();
         }
+    }
+
+    public void Win()
+    {
+        m_WinPanel.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void GameOver()

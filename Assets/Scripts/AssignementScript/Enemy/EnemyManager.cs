@@ -9,6 +9,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private GameObjectScriptablePool m_BigEnemeyPool = null;
     [SerializeField] private MapScriptable m_MapScriptable = null;
     [SerializeField] private GameDataListener m_GameDataListener = null;
+    [SerializeField] private GameManager m_GameManager = null;
     [SerializeField] float m_QuequeTimeOfStandardEnemy = 1.0f;
     [SerializeField] float m_QuequeTimeofBigEnemy = 3.0f;
     [SerializeField] float m_IntervalBetweenEachWaves = 10.0f;
@@ -33,11 +34,6 @@ public class EnemyManager : MonoBehaviour
         {
             throw new MissingReferenceException("Missing reference of BigEnemyPool scriptable object.");
         }
-
-        if (m_GameDataListener == null)
-        {
-            m_GameDataListener = FindObjectOfType<GameDataListener>();
-        }
     }
 
     private void Start()
@@ -52,28 +48,22 @@ public class EnemyManager : MonoBehaviour
             m_GameDataListener.PlaceTotalWaveText(m_TotalSpawnWave);
             m_GameDataListener.UpdateCurrentWave(m_SpawnWaveCounter);
         }
-    }
 
-    private void Update()
-    {
-        if (!m_SpawnCompleted)
+        if (m_GameManager == null)
         {
-            return;
+            m_GameManager = FindObjectOfType<GameManager>();
         }
 
-        if (m_TotalSpawnWave >= m_SpawnWaveCounter)
+        if (m_GameDataListener == null)
         {
-            StartCoroutine(Spawn
+            m_GameDataListener = FindObjectOfType<GameDataListener>();
+        }
+
+        StartCoroutine(Spawn
                 (m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == m_SpawnWaveCounter).StandardEnemyAmout,
                 m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == m_SpawnWaveCounter).BigEnemeyAmout));
-
-            if (m_GameDataListener != null)
-            {
-                m_GameDataListener.UpdateCurrentWave(m_SpawnWaveCounter);
-            }
-            m_SpawnCompleted = false;
-        }
     }
+  
 
     private IEnumerator Spawn(int smallEnemyAmout, int bigEnemyAmout)
     {
@@ -95,6 +85,34 @@ public class EnemyManager : MonoBehaviour
 
             m_SpawnWaveCounter++;
             m_SpawnCompleted = true;
+
+            if (m_SpawnWaveCounter == m_TotalSpawnWave && m_SpawnCompleted)
+            {
+                if (m_GameManager != null)
+                {
+                    m_GameManager.Win();
+                }
+            }
+            else
+            {
+                GetSpawnData(m_SpawnWaveCounter);
+            }
+        }
+    }
+
+    private void GetSpawnData(int spawnWaveCounter)
+    {
+        if (m_TotalSpawnWave >= spawnWaveCounter)
+        {
+            StartCoroutine(Spawn
+                (m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == spawnWaveCounter).StandardEnemyAmout,
+                m_MapScriptable.Maps.SpawnWaves.First(w => w.SpawnWaveIndex == spawnWaveCounter).BigEnemeyAmout));
+
+            if (m_GameDataListener != null)
+            {
+                m_GameDataListener.UpdateCurrentWave(m_SpawnWaveCounter);
+            }
+            m_SpawnCompleted = false;
         }
     }
 
