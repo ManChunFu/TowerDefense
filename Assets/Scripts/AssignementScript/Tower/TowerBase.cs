@@ -3,21 +3,15 @@ using UnityEngine;
 
 public abstract class TowerBase : MonoBehaviour
 {
-    [SerializeField] private GameObjectScriptablePool m_BulletTypePool = null;
     [SerializeField] private Transform m_SpawnPoint = default;
     [SerializeField] private Transform m_LookAtPoint = default;
     [SerializeField] private float m_FireRate = 0.25f;
 
     private Transform m_TransformTarget = null;
     private float m_CanFire = -1f;
-
+    public Transform SpawnPoint => m_SpawnPoint;
     private void Start()
     {
-        if (m_BulletTypePool == null)
-        {
-            throw new MissingReferenceException("Missing refrence of CannonScriptableObjectPool.");
-        }
-
         if (m_SpawnPoint == null)
         {
             throw new MissingReferenceException("Missing reference of Cannon_Spawn_Point transform.");
@@ -46,28 +40,8 @@ public abstract class TowerBase : MonoBehaviour
         m_TransformTarget = null;
     }
 
-    private void Shoot()
-    {
-        if (m_BulletTypePool != null)
-        {
-            GameObject bulletType = m_BulletTypePool.Rent(false);
-            if (bulletType != null)
-            {
-                BulletBase bullet = bulletType.GetComponent<BulletBase>();
-                bullet.SetPosition(m_SpawnPoint);
-                bullet.gameObject.SetActive(true);
-                bullet.Shoot();
-            }
-        }
-    }
+    public virtual void Shoot(){}
 
-    public void KillPool()
-    {
-        if (m_BulletTypePool != null)
-        {
-            m_BulletTypePool.DestroyMe();
-        }
-    }
 }
 
 

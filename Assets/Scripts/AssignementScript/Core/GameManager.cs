@@ -1,5 +1,4 @@
-﻿using Tools;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -7,7 +6,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject m_PausePanel = null;
     [SerializeField] private GameObject m_GameOverPanel = null;
     [SerializeField] private GameObject m_WinPanel = null;
-
 
     private void Awake()
     {
@@ -83,15 +81,16 @@ public class GameManager : MonoBehaviour
     #region Need to ask Ederic about it
     //public void LoadMenu()
     //{
-    //    KillAllPools()
+    //    KillAllPools();
     //    SceneManager.LoadScene(0);
     //}
 
     //private void KillAllPools()
     //{
     //    FindObjectOfType<EnemyManager>()?.KillPool();
+    //    FindObjectOfType<CannonTower>()?.KillPool();
+    //    FindObjectOfType<SnowBallTower>()?.KillPool();
     //    FindObjectOfType<CannonBall>()?.KillPool();
-    //    FindObjectOfType<TowerBase>()?.KillPool();
     //}
     #endregion
 
