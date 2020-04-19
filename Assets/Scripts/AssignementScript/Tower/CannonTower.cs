@@ -17,7 +17,7 @@ public class CannonTower : TowerBase, IPool, IWeapon
     {
         if (m_CannonPool != null)
         {
-            m_CannonPool.DestroyMe();
+            m_CannonPool.Clear();
         }
     }
 

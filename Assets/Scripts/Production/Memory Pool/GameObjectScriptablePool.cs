@@ -31,5 +31,13 @@ namespace Tools
                 m_InternalPool.Dispose();
             }
         }
+
+        public void Clear()
+        {
+            if (m_InternalPool != null)
+            {
+                m_InternalPool.Clear();
+            }
+        }
     }
 }

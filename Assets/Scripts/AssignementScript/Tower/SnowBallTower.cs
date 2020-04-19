@@ -17,7 +17,7 @@ public class SnowBallTower : TowerBase, IPool, IWeapon
     {
         if (m_SnowBallPool != null)
         {
-            m_SnowBallPool.DestroyMe();
+            m_SnowBallPool.Clear();
         }
     }
 

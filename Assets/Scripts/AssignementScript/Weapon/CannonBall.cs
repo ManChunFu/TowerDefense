@@ -53,7 +53,7 @@ public class CannonBall : BulletBase
     {
         if (m_ExposionScriptablePool != null)
         {
-            m_ExposionScriptablePool.DestroyMe();
+            m_ExposionScriptablePool.Clear();
         }
     }
 }
