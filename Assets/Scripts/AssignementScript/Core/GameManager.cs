@@ -79,19 +79,19 @@ public class GameManager : MonoBehaviour
     }
 
     #region Need to ask Ederic about it
-    //public void LoadMenu()
-    //{
-    //    KillAllPools();
-    //    SceneManager.LoadScene(0);
-    //}
+    public void LoadMenu()
+    {
+        KillAllPools();
+        SceneManager.LoadScene(0);
+    }
 
-    //private void KillAllPools()
-    //{
-    //    FindObjectOfType<EnemyManager>()?.KillPool();
-    //    FindObjectOfType<CannonTower>()?.KillPool();
-    //    FindObjectOfType<SnowBallTower>()?.KillPool();
-    //    FindObjectOfType<CannonBall>()?.KillPool();
-    //}
+    private void KillAllPools()
+    {
+        FindObjectOfType<EnemyManager>()?.KillPool();
+        FindObjectOfType<CannonTower>()?.KillPool();
+        FindObjectOfType<SnowBallTower>()?.KillPool();
+        FindObjectOfType<CannonBall>()?.KillPool();
+    }
     #endregion
 
     public void QuitGame()
