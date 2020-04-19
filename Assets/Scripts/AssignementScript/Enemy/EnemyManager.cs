@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEngine;
 using Tools;
 
-public class EnemyManager : MonoBehaviour
+public class EnemyManager : MonoBehaviour, IPool
 {
     [SerializeField] private GameObjectScriptablePool m_StandardEnemyPool = null;
     [SerializeField] private GameObjectScriptablePool m_BigEnemeyPool = null;

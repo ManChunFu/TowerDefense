@@ -79,6 +79,9 @@ public class GameManager : MonoBehaviour
     }
 
     #region Need to ask Ederic about it
+    //Ederic: Once you kill the pool, the scriptable pool isDisposed, so you can use it anymore in the normal way. 
+    //A solution to this: Don't dispose the Pool, but clear it. Dispose method is called when you won't use that Disposable system anymore. 
+    //If you dispose but then you use it again the behaviour is not granted
     public void LoadMenu()
     {
         KillAllPools();
@@ -87,10 +90,10 @@ public class GameManager : MonoBehaviour
 
     private void KillAllPools()
     {
-        FindObjectOfType<EnemyManager>()?.KillPool();
-        FindObjectOfType<CannonTower>()?.KillPool();
-        FindObjectOfType<SnowBallTower>()?.KillPool();
-        FindObjectOfType<CannonBall>()?.KillPool();
+        FindObjectOfType<EnemyManager>()?.KillPool(); // Still call Dispose pool
+        FindObjectOfType<CannonBall>()?.KillPool(); // Only clear pool
+        FindObjectOfType<CannonTower>()?.KillPool(); // only clear pool
+        FindObjectOfType<SnowBallTower>()?.KillPool(); // only clear pool
     }
     #endregion
 

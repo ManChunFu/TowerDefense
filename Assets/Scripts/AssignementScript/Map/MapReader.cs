@@ -23,9 +23,13 @@ public class MapReader
                 string line = sr.ReadLine();
 
                 if (line == "#")
+                {
                     readingMap = false;
+                }
                 else if (readingMap)
+                {
                     lines.Add(line);
+                }
                 else
                 {
                     string[] spawnNumbers = line.Split(' ');
